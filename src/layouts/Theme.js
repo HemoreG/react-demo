@@ -1,19 +1,19 @@
 import React, {Fragment, useState} from 'react';
 import {withTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
-import {Button, Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Button, Container, Heading, Hero, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import codeTheme from '../assets/examples/codeTheme.txt';
-import SyntaxHighlighter from "react-syntax-highlighter";
-import {hybrid} from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
+import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 function Theme({t}) {
     const [theme, setTheme] = useState('info');
     const sectionStyle = {
         padding: '3rem 1.5rem 3rem 0rem',
     };
-    const customStyle = {
-        width: '100vh'
+    const customSection = {
+        padding: '1.5rem 1.5rem 1.5rem 1.5rem',
     };
     const [code, setCode] = useState('');
 
@@ -28,42 +28,41 @@ function Theme({t}) {
             <Hero color={theme} size="fullheight">
                 <Hero.Body>
                     <Container>
-                        <Columns>
-                            <Columns.Column size={6}>
-                                <Heading>{t('reactState')}</Heading>
-                                <Heading subtitle size={3}>
-                                    {t('themeSubtitle')}
-                                </Heading>
-                                <Section style={sectionStyle}>
-                                    <Button.Group>
-                                        <Button
-                                            onClick={() => setTheme(theme === 'info' ? 'dark' : 'info')}
-                                        >
-										<span className="icon">
-											<FontAwesomeIcon icon="lightbulb"/>
-										</span>
-                                            <span>{t('changeTheme')}</span>
-                                        </Button>
-                                        <Link to="/demo">
-                                            <Button>
-                                                <span>{t('continueDemo')}</span>
-                                                <span className="icon">
+                        <Heading>{t('reactState')}</Heading>
+                        <Heading subtitle size={3}>
+                            {t('themeSubtitle')}
+                        </Heading>
+                        <Section style={sectionStyle}>
+                            <Button.Group>
+                                <Button
+                                    onClick={() => setTheme(theme === 'info' ? 'dark' : 'info')}
+                                >
+                                    <span className="icon">
+                                        <FontAwesomeIcon icon="lightbulb"/>
+                                    </span>
+                                    <span>{t('changeTheme')}</span>
+                                </Button>
+                                <Link to="/demo">
+                                    <Button>
+                                        <span>{t('continueDemo')}</span>
+                                        <span className="icon">
                                                     <FontAwesomeIcon icon="chevron-right"/>
                                                 </span>
-                                            </Button>
-                                        </Link>
-                                    </Button.Group>
-                                </Section>
-                            </Columns.Column>
-                            <Columns.Column size={6}>
-                                <SyntaxHighlighter showLineNumbers style={hybrid} customStyle={customStyle}>
-                                    {code}
-                                </SyntaxHighlighter>
-                            </Columns.Column>
-                        </Columns>
+                                    </Button>
+                                </Link>
+                            </Button.Group>
+                        </Section>
                     </Container>
                 </Hero.Body>
             </Hero>
+            <Section style={customSection}>
+                <SyntaxHighlighter
+                    showLineNumbers language="jsx"
+                    style={theme === 'info' ? prism : atomDark}
+                >
+                    {code}
+                </SyntaxHighlighter>
+            </Section>
         </Fragment>
     );
 }
