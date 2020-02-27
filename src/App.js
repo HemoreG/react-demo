@@ -10,19 +10,19 @@ library.add(...icons);
 
 
 function App() {
-  return (
-      <Router>
-        {routes.map((route, index) => (
-            <Suspense key={index} fallback={'LOADING...'}>
-              <Route
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.main}
-              />
-            </Suspense>
-        ))}
-      </Router>
-  );
+    return (
+        <Router>
+            {routes.map((route, index) => (
+                <Suspense key={index} fallback={'LOADING...'}>
+                    <Route
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.main}
+                    />
+                </Suspense>
+            ))}
+        </Router>
+    );
 }
 
 export default App;

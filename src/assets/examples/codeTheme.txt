@@ -1,0 +1,43 @@
+// extract (we hid unnecessary)
+
+import React, {Fragment, useState} from 'react';
+// import deps...
+
+function Theme({t}) {
+    const [theme, setTheme] = useState('info');
+
+    return (
+        <Hero color={theme} size="fullheight">
+            <Hero.Body>
+                <Container>
+                    <Heading>{t('reactState')}</Heading>
+                    <Heading subtitle size={3}>
+                        {t('themeSubtitle')}
+                    </Heading>
+                    <Section>
+                        <Button.Group>
+                            <Button
+                                onClick={() => setTheme(theme === 'info' ? 'dark' : 'info')}
+                            >
+                                <span className="icon">
+                                    <FontAwesomeIcon icon="lightbulb"/>
+                                </span>
+                                <span>{t('changeTheme')}</span>
+                            </Button>
+                            <Link to="/demo">
+                                <Button>
+                                    <span>{t('continueDemo')}</span>
+                                    <span className="icon">
+                                        <FontAwesomeIcon icon="chevron-right"/>
+                                    </span>
+                                </Button>
+                            </Link>
+                        </Button.Group>
+                    </Section>
+                </Container>
+            </Hero.Body>
+        </Hero>
+    );
+}
+
+export default withTranslation()(Theme);
