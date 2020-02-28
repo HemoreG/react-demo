@@ -6,6 +6,8 @@ import './App.css';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import icons from './fontLibrary';
 import Loading from "./layouts/Loading";
+import {connect} from 'react-redux';
+// import {changePage} from './actions/appAction' // Import needed actions here
 
 library.add(...icons);
 
@@ -18,7 +20,7 @@ function App() {
                     <Route
                         path={route.path}
                         exact={route.exact}
-                        component={route.main}
+                        render={route.main}
                     />
                 </Suspense>
             ))}
@@ -26,4 +28,8 @@ function App() {
     );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    state: state
+});
+
+export default connect(mapStateToProps)(App);
