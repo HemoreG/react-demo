@@ -5,6 +5,7 @@ export const en = {
     "goToHome": "Go to the home page",
     "homeGoToDemo": "Let's learn React !",
     "homeSubtitle": "Wanna know React ...?",
+    "homeSubtitleQRCode": "Scan this QR Code !",
     "loading": "Loading...",
     "pageNotFoundTitle": "Oops... Page not found",
     "pageNotFoundContent": "The page you are looking for does not seem to exist.",
@@ -13,4 +14,5 @@ export const en = {
     "themeSubtitle": "A component function can use a local state",
     "themeSubtitleClass": "A component class can use a local state",
     "welcome": "Welcome",
+    "welcomeQRCode": "Welcome to this demo",
 };

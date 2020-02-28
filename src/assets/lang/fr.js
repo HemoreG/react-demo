@@ -5,6 +5,7 @@ export const fr = {
     "goToHome": "Aller à la page d'accueil",
     "homeGoToDemo": "Apprenons React !",
     "homeSubtitle": "Vous souhaitez connaître React...?",
+    "homeSubtitleQRCode": "Scannez ce QR Code !",
     "loading": "Chargement...",
     "pageNotFoundTitle": "Oops... La page n'a pas été trouvée",
     "pageNotFoundContent": "La page que vous recherchez ne semble pas exister.",
@@ -13,4 +14,5 @@ export const fr = {
     "themeSubtitle": "Une fonction composant peut utiliser un state local",
     "themeSubtitleClass": "Une classe composant peut utiliser un state local",
     "welcome": "Bienvenue",
+    "welcomeQRCode": "Bienvenue sur cette demo",
 };
