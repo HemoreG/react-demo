@@ -88,17 +88,17 @@ class Counter extends React.Component {
                             <Section style={sectionCounter}>
                                 <Heading>{this.state.count}</Heading>
                                 <Button.Group>
-                                    <Button onClick={() => this.up()}>
-                                        <span>{t('plus')}</span>
-                                        <span className="icon">
-                                        <FontAwesomeIcon icon="plus"/>
-                                    </span>
-                                    </Button>
                                     <Button onClick={() => this.down()}>
                                         <span>{t('minus')}</span>
                                         <span className="icon">
-                                        <FontAwesomeIcon icon="minus"/>
-                                    </span>
+                                            <FontAwesomeIcon icon="minus"/>
+                                        </span>
+                                    </Button>
+                                    <Button onClick={() => this.up()}>
+                                        <span>{t('plus')}</span>
+                                        <span className="icon">
+                                            <FontAwesomeIcon icon="plus"/>
+                                        </span>
                                     </Button>
                                 </Button.Group>
                             </Section>
