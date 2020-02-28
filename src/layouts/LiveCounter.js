@@ -2,19 +2,16 @@ import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 import {Button, Container, Heading, Hero, Section} from 'react-bulma-components';
+// import {w3cwebsocket as W3CWebSocket} from 'websocket';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import codeThemeClass from '../assets/examples/codeThemeClass.txt';
-import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
-import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 const sectionStyle = {
     padding: '3rem 1.5rem 3rem 0rem',
 };
-const customSection = {
-    padding: '1.5rem 1.5rem 1.5rem 1.5rem',
-};
 
-class ThemeClass extends React.Component {
+// const client = new W3CWebSocket('ws://WWW.XXX.YYY.ZZZ:8000');
+
+class LiveCounter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,11 +33,17 @@ class ThemeClass extends React.Component {
     };
 
     componentDidMount() {
-        fetch(codeThemeClass)
-            .then((r) => r.text())
-            .then(text => {
-                this.setCode(text);
-            });
+        // fetch(codeThemeClass)
+        //     .then((r) => r.text())
+        //     .then(text => {
+        //         this.setCode(text);
+        //     });
+        // client.onopen = () => {
+        //     console.log('WebSocket Client Connected');
+        // };
+        // client.onmessage = (message) => {
+        //     console.log(message);
+        // };
     }
 
     render() {
@@ -64,7 +67,7 @@ class ThemeClass extends React.Component {
                                             <FontAwesomeIcon icon="lightbulb"/>
                                         </span>
                                     </Button>
-                                    <Link to="/live-counter">
+                                    <Link to="/demo">
                                         <Button>
                                             <span>{t('continueDemo')}</span>
                                             <span className="icon">
@@ -77,18 +80,10 @@ class ThemeClass extends React.Component {
                         </Container>
                     </Hero.Body>
                 </Hero>
-                <Section style={customSection}>
-                    <SyntaxHighlighter
-                        showLineNumbers language="jsx"
-                        style={this.state.theme === 'info' ? prism : atomDark}
-                    >
-                        {this.state.code}
-                    </SyntaxHighlighter>
-                </Section>
             </Fragment>
         );
     }
 }
 
 
-export default withTranslation()(ThemeClass);
+export default withTranslation()(LiveCounter);
