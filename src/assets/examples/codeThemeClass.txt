@@ -24,14 +24,6 @@ class ThemeClass extends React.Component {
         });
     }
 
-    componentDidMount() {
-        fetch(codeTheme)
-            .then((r) => r.text())
-            .then(text => {
-                this.setCode(text);
-            });
-    }
-
     render() {
         const {t} = this.props;
         return (

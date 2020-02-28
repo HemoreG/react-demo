@@ -60,7 +60,7 @@ class ThemeClass extends React.Component {
                                             <FontAwesomeIcon icon="lightbulb"/>
                                         </span>
                                     </Button>
-                                    <Link to="/live-counter">
+                                    <Link to="/counter">
                                         <Button>
                                             <span>{t('continueDemo')}</span>
                                             <span className="icon">
