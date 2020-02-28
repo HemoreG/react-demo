@@ -6,9 +6,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import codeTheme from '../assets/examples/codeTheme.txt';
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
+import {changeTheme} from "../actions/appAction";
+import {connect} from "react-redux";
 
-function Theme({t}) {
-    const [theme, setTheme] = useState('info');
+function Theme({props, state, t}) {
     const sectionStyle = {
         padding: '3rem 1.5rem 3rem 0rem',
     };
@@ -25,7 +26,7 @@ function Theme({t}) {
 
     return (
         <Fragment>
-            <Hero color={theme}>
+            <Hero color={state.currentTheme === 'light' ? 'info' : 'dark'}>
                 <Hero.Body>
                     <Container>
                         <Heading>{t('reactState')}</Heading>
@@ -35,7 +36,7 @@ function Theme({t}) {
                         <Section style={sectionStyle}>
                             <Button.Group>
                                 <Button
-                                    onClick={() => setTheme(theme === 'info' ? 'dark' : 'info')}
+                                    onClick={() => props.changeTheme()}
                                 >
                                     <span>{t('changeTheme')}</span>
                                     <span className="icon">
@@ -58,7 +59,7 @@ function Theme({t}) {
             <Section style={customSection}>
                 <SyntaxHighlighter
                     showLineNumbers language="jsx"
-                    style={theme === 'info' ? prism : atomDark}
+                    style={state.currentTheme === 'light' ? prism : atomDark}
                 >
                     {code}
                 </SyntaxHighlighter>
@@ -67,4 +68,14 @@ function Theme({t}) {
     );
 }
 
-export default withTranslation()(Theme);
+const mapDispatchToProps = dispatch => ({
+    props: {
+        changeTheme: () => dispatch(changeTheme()),
+    }
+});
+
+const mapStateToProps = (state) => ({
+    state: state.rootReducers
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Theme));

@@ -6,6 +6,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import codeThemeClass from '../assets/examples/codeThemeClass.txt';
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
+import {changeTheme} from "../actions/appAction";
+import {connect} from "react-redux";
 
 const sectionStyle = {
     padding: '3rem 1.5rem 3rem 0rem',
@@ -18,16 +20,9 @@ class ThemeClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            code: '',
-            theme: 'info'
+            code: ''
         };
     }
-
-    setTheme = () => {
-        this.setState({
-            theme: this.state.theme === 'info' ? 'dark' : 'info'
-        });
-    };
 
     setCode = text => {
         this.setState({
@@ -44,10 +39,11 @@ class ThemeClass extends React.Component {
     }
 
     render() {
-        const {t} = this.props;
+        const {t, props, state} = this.props;
+
         return (
             <Fragment>
-                <Hero color={this.state.theme}>
+                <Hero color={state.currentTheme === 'light' ? 'info' : 'dark'}>
                     <Hero.Body>
                         <Container>
                             <Heading>{t('reactStateClass')}</Heading>
@@ -57,7 +53,7 @@ class ThemeClass extends React.Component {
                             <Section style={sectionStyle}>
                                 <Button.Group>
                                     <Button
-                                        onClick={() => this.setTheme()}
+                                        onClick={() => props.changeTheme()}
                                     >
                                         <span>{t('changeTheme')}</span>
                                         <span className="icon">
@@ -80,7 +76,7 @@ class ThemeClass extends React.Component {
                 <Section style={customSection}>
                     <SyntaxHighlighter
                         showLineNumbers language="jsx"
-                        style={this.state.theme === 'info' ? prism : atomDark}
+                        style={state.currentTheme === 'light' ? prism : atomDark}
                     >
                         {this.state.code}
                     </SyntaxHighlighter>
@@ -89,6 +85,14 @@ class ThemeClass extends React.Component {
         );
     }
 }
+const mapDispatchToProps = dispatch => ({
+    props: {
+        changeTheme: () => dispatch(changeTheme()),
+    }
+});
 
+const mapStateToProps = (state) => ({
+    state: state.rootReducers
+});
 
-export default withTranslation()(ThemeClass);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ThemeClass));
