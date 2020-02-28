@@ -37,12 +37,12 @@ function Theme({t}) {
                                 <Button
                                     onClick={() => setTheme(theme === 'info' ? 'dark' : 'info')}
                                 >
+                                    <span>{t('changeTheme')}</span>
                                     <span className="icon">
                                         <FontAwesomeIcon icon="lightbulb"/>
                                     </span>
-                                    <span>{t('changeTheme')}</span>
                                 </Button>
-                                <Link to="/demo">
+                                <Link to="/theme-class">
                                     <Button>
                                         <span>{t('continueDemo')}</span>
                                         <span className="icon">

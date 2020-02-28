@@ -7,7 +7,9 @@ export const fr = {
     "homeSubtitle": "Vous souhaitez connaître React...?",
     "pageNotFoundTitle": "Oops... La page n'a pas été trouvée",
     "pageNotFoundContent": "La page que vous recherchez ne semble pas exister.",
-    "reactState": "State React",
-    "themeSubtitle": "Un composant peut utiliser un state local",
+    "reactState": "Fonction : State React",
+    "reactStateClass": "Classe : State React",
+    "themeSubtitle": "Une fonction composant peut utiliser un state local",
+    "themeSubtitleClass": "Une classe composant peut utiliser un state local",
     "welcome": "Bienvenue",
 };

@@ -7,7 +7,9 @@ export const en = {
     "homeSubtitle": "Wanna know React ...?",
     "pageNotFoundTitle": "Oops... Page not found",
     "pageNotFoundContent": "The page you are looking for does not seem to exist.",
-    "reactState": "React State",
-    "themeSubtitle": "A component can use a local state",
+    "reactState": "Function : React State",
+    "reactStateClass": "Class : React State",
+    "themeSubtitle": "A component function can use a local state",
+    "themeSubtitleClass": "A component class can use a local state",
     "welcome": "Welcome",
 };

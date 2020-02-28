@@ -1,0 +1,75 @@
+// extract (we hid unnecessary)
+
+import React, {Fragment} from 'react';
+// import deps...
+
+class ThemeClass extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            code: '',
+            theme: 'info'
+        };
+    }
+
+    setTheme = () => {
+        this.setState({
+            theme: this.state.theme === 'info' ? 'dark' : 'info'
+        });
+    }
+
+    setCode = text => {
+        this.setState({
+            code: text
+        });
+    }
+
+    componentDidMount() {
+        fetch(codeTheme)
+            .then((r) => r.text())
+            .then(text => {
+                this.setCode(text);
+            });
+    }
+
+    render() {
+        const {t} = this.props;
+        return (
+            <Fragment>
+                <Hero color={this.state.theme} size="large">
+                    <Hero.Body>
+                        <Container>
+                            <Heading>{t('reactStateClass')}</Heading>
+                            <Heading subtitle size={3}>
+                                {t('themeSubtitleClass')}
+                            </Heading>
+                            <Section style={sectionStyle}>
+                                <Button.Group>
+                                    <Button
+                                        onClick={() => this.setTheme()}
+                                    >
+                                        <span>{t('changeTheme')}</span>
+                                        <span className="icon">
+                                            <FontAwesomeIcon icon="lightbulb"/>
+                                        </span>
+                                    </Button>
+                                    <Link to="/demo">
+                                        <Button>
+                                            <span>{t('continueDemo')}</span>
+                                            <span className="icon">
+                                                    <FontAwesomeIcon icon="chevron-right"/>
+                                                </span>
+                                        </Button>
+                                    </Link>
+                                </Button.Group>
+                            </Section>
+                        </Container>
+                    </Hero.Body>
+                </Hero>
+            </Fragment>
+        );
+    }
+}
+
+
+export default withTranslation()(ThemeClass);
