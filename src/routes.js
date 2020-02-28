@@ -13,16 +13,17 @@ const routes = [
     },
     {
         path: '/theme',
-        exact: true,
+        exact: false,
         main: () => <Theme/>
     },
     {
         path: '/theme-class',
-        exact: true,
+        exact: false,
         main: () => <ThemeClass/>
     },
     {
         path: '/*',
+        exact: false,
         main: (data) => <Page404 data={data} />
     }
 ];

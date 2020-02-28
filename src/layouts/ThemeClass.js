@@ -48,7 +48,7 @@ class ThemeClass extends React.Component {
         const {t} = this.props;
         return (
             <Fragment>
-                <Hero color={this.state.theme} size="large">
+                <Hero color={this.state.theme}>
                     <Hero.Body>
                         <Container>
                             <Heading>{t('reactStateClass')}</Heading>

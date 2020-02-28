@@ -5,6 +5,7 @@ import 'react-bulma-components/dist/react-bulma-components.min.css';
 import './App.css';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import icons from './fontLibrary';
+import Loading from "./layouts/Loading";
 
 library.add(...icons);
 
@@ -13,7 +14,7 @@ function App() {
     return (
         <Router>
             {routes.map((route, index) => (
-                <Suspense key={index} fallback={'LOADING...'}>
+                <Suspense key={index} fallback={<Loading/>}>
                     <Route
                         path={route.path}
                         exact={route.exact}

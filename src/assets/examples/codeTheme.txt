@@ -7,7 +7,7 @@ function Theme({t}) {
     const [theme, setTheme] = useState('info');
 
     return (
-        <Hero color={theme} size="fullheight">
+        <Hero color={theme}>
             <Hero.Body>
                 <Container>
                     <Heading>{t('reactState')}</Heading>

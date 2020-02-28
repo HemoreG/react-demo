@@ -25,7 +25,7 @@ function Theme({t}) {
 
     return (
         <Fragment>
-            <Hero color={theme} size="large">
+            <Hero color={theme}>
                 <Hero.Body>
                     <Container>
                         <Heading>{t('reactState')}</Heading>

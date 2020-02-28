@@ -5,6 +5,7 @@ export const fr = {
     "goToHome": "Aller à la page d'accueil",
     "homeGoToDemo": "Apprenons React !",
     "homeSubtitle": "Vous souhaitez connaître React...?",
+    "loading": "Chargement...",
     "pageNotFoundTitle": "Oops... La page n'a pas été trouvée",
     "pageNotFoundContent": "La page que vous recherchez ne semble pas exister.",
     "reactState": "Fonction : State React",

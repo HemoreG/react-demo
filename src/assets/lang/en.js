@@ -5,6 +5,7 @@ export const en = {
     "goToHome": "Go to the home page",
     "homeGoToDemo": "Let's learn React !",
     "homeSubtitle": "Wanna know React ...?",
+    "loading": "Loading...",
     "pageNotFoundTitle": "Oops... Page not found",
     "pageNotFoundContent": "The page you are looking for does not seem to exist.",
     "reactState": "Function : React State",
