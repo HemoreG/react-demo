@@ -30,8 +30,6 @@ export default function rootReducers(state = initialState, action) {
                 ...state,
                 count: JSON.parse(action.payload.message).count
             };
-        case "INCREMENT":
-
         default:
             return state;
     }

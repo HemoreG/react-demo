@@ -1,9 +1,9 @@
 import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
-import {Button, Container, Heading, Hero, Section, Columns} from 'react-bulma-components';
+import {Button, Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {changeTheme, increment} from "../actions/appAction";
+import {changeTheme, decrement, increment} from "../actions/appAction";
 import {connect} from "react-redux";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -45,7 +45,7 @@ class Counter extends React.Component {
     }
 
     down() {
-        this.setState({count: this.state.count - 1});
+        this.props.props.decrement()
     }
 
     render() {
@@ -121,7 +121,8 @@ class Counter extends React.Component {
 const mapDispatchToProps = dispatch => ({
     props: {
         changeTheme: () => dispatch(changeTheme()),
-        increment: () => dispatch(increment())
+        increment: () => dispatch(increment()),
+        decrement: () => dispatch(decrement())
     }
 });
 

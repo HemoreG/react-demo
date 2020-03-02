@@ -1,4 +1,4 @@
-import { send } from '@giantmachines/redux-websocket';
+import {send} from '@giantmachines/redux-websocket';
 
 export const changePage = (path) => ({
     type: 'CHANGEPAGE',
@@ -14,4 +14,5 @@ export const changeTheme = () => ({
 });
 
 export const increment = () => send({event: "increment"});
+export const decrement = () => send({event: "decrement"});
 // Actions needed inside the App Component

@@ -7,11 +7,11 @@ import {ConnectedRouter} from 'connected-react-router'
 import {Provider} from "react-redux";
 import * as serviceWorker from './serviceWorker';
 import configureStore, {history} from "./store/configureStore";
-import { connect as wsConnect } from '@giantmachines/redux-websocket';
+import {connect as wsConnect} from '@giantmachines/redux-websocket';
 
 const store = configureStore(/* provide initial state if any */);
 
-store.dispatch(wsConnect('wss://ws-counter.gigalixirapp.com'));
+store.dispatch(wsConnect('wss://ws-counter2.gigalixirapp.com'));
 
 ReactDOM.render(
     <Provider store={store}>
