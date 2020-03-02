@@ -2,6 +2,7 @@ export const en = {
     "changeTheme": "Change theme",
     "continueDemo": "Continue the demo",
     "counterSubtitle": "Create a local counter",
+    "followTheDemo": "Follow the demo",
     "goBack": "Go back to the previous page",
     "goToHome": "Go to the home page",
     "homeGoToDemo": "Let's learn React !",

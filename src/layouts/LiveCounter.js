@@ -10,6 +10,9 @@ const sectionStyle = {
     padding: '3rem 1.5rem 3rem 0rem',
 };
 
+const customButton = {
+    margin: '0rem .0rem .5rem 0.5rem',
+};
 
 class LiveCounter extends React.Component {
     constructor(props) {
@@ -24,20 +27,6 @@ class LiveCounter extends React.Component {
             code: text
         });
     };
-
-    componentDidMount() {
-        // fetch(codeThemeClass)
-        //     .then((r) => r.text())
-        //     .then(text => {
-        //         this.setCode(text);
-        //     });
-        // client.onopen = () => {
-        //     console.log('WebSocket Client Connected');
-        // };
-        // client.onmessage = (message) => {
-        //     console.log(message);
-        // };
-    }
 
     render() {
         const {t, props, state} = this.props;
@@ -64,8 +53,16 @@ class LiveCounter extends React.Component {
                                         <Button>
                                             <span>{t('continueDemo')}</span>
                                             <span className="icon">
-                                                    <FontAwesomeIcon icon="chevron-right"/>
-                                                </span>
+                                                <FontAwesomeIcon icon="chevron-right"/>
+                                            </span>
+                                        </Button>
+                                    </Link>
+                                    <Link to={state.currentPage}>
+                                        <Button style={customButton}>
+                                            <span>{t('followTheDemo')}</span>
+                                            <span className="icon">
+                                            <FontAwesomeIcon icon="paper-plane"/>
+                                        </span>
                                         </Button>
                                     </Link>
                                 </Button.Group>

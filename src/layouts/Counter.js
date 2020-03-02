@@ -3,7 +3,7 @@ import {withTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 import {Button, Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {changeTheme, decrement, increment} from "../actions/appAction";
+import {changePath, changeTheme, decrement, increment} from "../actions/appAction";
 import {connect} from "react-redux";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -15,6 +15,10 @@ const sectionStyle = {
 
 const sectionCounter = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
+};
+
+const customButton = {
+    margin: '0rem .0rem .5rem 0.5rem',
 };
 
 class Counter extends React.Component {
@@ -69,12 +73,20 @@ class Counter extends React.Component {
                                             <FontAwesomeIcon icon="lightbulb"/>
                                         </span>
                                     </Button>
-                                    <Link to="/live-counter">
+                                    <Link to="/live-counter" onClick={() => props.changePath()}>
                                         <Button>
                                             <span>{t('continueDemo')}</span>
                                             <span className="icon">
                                                     <FontAwesomeIcon icon="chevron-right"/>
                                                 </span>
+                                        </Button>
+                                    </Link>
+                                    <Link to={state.currentPage}>
+                                        <Button style={customButton}>
+                                            <span>{t('followTheDemo')}</span>
+                                            <span className="icon">
+                                            <FontAwesomeIcon icon="paper-plane"/>
+                                        </span>
                                         </Button>
                                     </Link>
                                 </Button.Group>
@@ -122,7 +134,8 @@ const mapDispatchToProps = dispatch => ({
     props: {
         changeTheme: () => dispatch(changeTheme()),
         increment: () => dispatch(increment()),
-        decrement: () => dispatch(decrement())
+        decrement: () => dispatch(decrement()),
+        changePath: () => dispatch(changePath('counter-live'))
     }
 });
 

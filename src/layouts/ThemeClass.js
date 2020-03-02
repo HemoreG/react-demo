@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import codeThemeClass from '../assets/examples/codeThemeClass.txt';
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
-import {changeTheme} from "../actions/appAction";
+import {changePath, changeTheme} from "../actions/appAction";
 import {connect} from "react-redux";
 
 const sectionStyle = {
@@ -14,6 +14,9 @@ const sectionStyle = {
 };
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
+};
+const customButton = {
+    margin: '0rem .0rem .5rem 0.5rem',
 };
 
 class ThemeClass extends React.Component {
@@ -60,12 +63,20 @@ class ThemeClass extends React.Component {
                                             <FontAwesomeIcon icon="lightbulb"/>
                                         </span>
                                     </Button>
-                                    <Link to="/counter">
+                                    <Link to="/counter" onClick={() => props.changePath()}>
                                         <Button>
                                             <span>{t('continueDemo')}</span>
                                             <span className="icon">
                                                     <FontAwesomeIcon icon="chevron-right"/>
                                                 </span>
+                                        </Button>
+                                    </Link>
+                                    <Link to={state.currentPage}>
+                                        <Button style={customButton}>
+                                            <span>{t('followTheDemo')}</span>
+                                            <span className="icon">
+                                            <FontAwesomeIcon icon="paper-plane"/>
+                                        </span>
                                         </Button>
                                     </Link>
                                 </Button.Group>
@@ -88,6 +99,7 @@ class ThemeClass extends React.Component {
 const mapDispatchToProps = dispatch => ({
     props: {
         changeTheme: () => dispatch(changeTheme()),
+        changePath: () => dispatch(changePath('counter'))
     }
 });
 

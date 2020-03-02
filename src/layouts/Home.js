@@ -5,13 +5,25 @@ import reactIcon from '../logo.svg'
 import {connect} from 'react-redux';
 import {Button, Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {changePosition} from "../actions/appAction";
+import {changePath, resetState} from "../actions/appAction";
 import qrCode from '../assets/images/qrcode.svg'
 
 function Home({props, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
+
+    const resetEverything = () => {
+        props.resetState();
+        if (localStorage.getItem("token") === 'QP4FAg3TakcxS68B8ekD') {
+            props.resetPath();
+        }
+    };
+
     const sectionStyle = {
         padding: '3rem 1.5rem 3rem 0rem',
+    };
+
+    const customButton = {
+        margin: '0rem .0rem .5rem 0.5rem',
     };
 
     const qrStyle = {
@@ -28,7 +40,7 @@ function Home({props, state, t}) {
                                 <Heading>{t('welcome')}</Heading>
                                 <Heading subtitle size={3}>
                                     {t('homeSubtitle')}
-                                </Heading>            
+                                </Heading>
                             </Columns.Column>
                             <Columns.Column>
                                 <img alt="QR Code" style={qrStyle} src={qrCode}/>
@@ -36,11 +48,24 @@ function Home({props, state, t}) {
                         </Columns>
                         <Section style={sectionStyle}>
                             <Button.Group>
-                                <Link to="/theme">
+                                <Button className="is-hidden-touch" onClick={() => resetEverything()}>
+                                    <span className="icon">
+                                        <FontAwesomeIcon icon="user-shield"/>
+                                    </span>
+                                </Button>
+                                <Link to="/theme" onClick={() => props.changePath()}>
                                     <Button>
                                         <span>{t('homeGoToDemo')}</span>
                                         <span className="icon">
                                             <FontAwesomeIcon icon="chevron-right"/>
+                                        </span>
+                                    </Button>
+                                </Link>
+                                <Link to={state.currentPage}>
+                                    <Button style={customButton}>
+                                        <span>{t('followTheDemo')}</span>
+                                        <span className="icon">
+                                            <FontAwesomeIcon icon="paper-plane"/>
                                         </span>
                                     </Button>
                                 </Link>
@@ -55,7 +80,9 @@ function Home({props, state, t}) {
 
 const mapDispatchToProps = dispatch => ({
     props: {
-        changePosition: () => dispatch(changePosition()),
+        resetState: () => dispatch(resetState()),
+        changePath: () => dispatch(changePath('theme')),
+        resetPath: () => dispatch(changePath('/'))
     }
 });
 

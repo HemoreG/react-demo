@@ -7,12 +7,12 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import icons from './fontLibrary';
 import Loading from "./layouts/Loading";
 import {connect} from 'react-redux';
-// import {changePage} from './actions/appAction' // Import needed actions here
 
 library.add(...icons);
 
 
 function App() {
+
     return (
         <Router>
             {routes.map((route, index) => (
@@ -29,7 +29,7 @@ function App() {
 }
 
 const mapStateToProps = (state) => ({
-    state: state
+    state: state.rootReducers
 });
 
 export default connect(mapStateToProps)(App);
