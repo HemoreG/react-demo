@@ -2,7 +2,8 @@
 const initialState = {
     currentPage: '/',
     currentTheme: 'light',
-    position: 'visitor'
+    position: 'visitor',
+    count: 0
 };
 
 // Add your action type here + describe what it does functionally (don't forget to add '...state' to get other fields)
@@ -24,6 +25,13 @@ export default function rootReducers(state = initialState, action) {
                 ...state,
                 currentTheme: state.currentTheme === 'light' ? 'dark' : 'light'
             };
+        case "REDUX_WEBSOCKET::MESSAGE":
+            return {
+                ...state,
+                count: JSON.parse(action.payload.message).count
+            };
+        case "INCREMENT":
+
         default:
             return state;
     }

@@ -3,7 +3,7 @@ import {withTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 import {Button, Container, Heading, Hero, Section, Columns} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {changeTheme} from "../actions/appAction";
+import {changeTheme, increment} from "../actions/appAction";
 import {connect} from "react-redux";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -41,7 +41,7 @@ class Counter extends React.Component {
     };
 
     up() {
-        this.setState({count: this.state.count + 1});
+        this.props.props.increment()
     }
 
     down() {
@@ -86,7 +86,7 @@ class Counter extends React.Component {
                     <Columns>
                         <Columns.Column size={3}>
                             <Section style={sectionCounter}>
-                                <Heading>{this.state.count}</Heading>
+                                <Heading>{state.count}</Heading>
                                 <Button.Group>
                                     <Button onClick={() => this.down()}>
                                         <span>{t('minus')}</span>
@@ -121,6 +121,7 @@ class Counter extends React.Component {
 const mapDispatchToProps = dispatch => ({
     props: {
         changeTheme: () => dispatch(changeTheme()),
+        increment: () => dispatch(increment())
     }
 });
 

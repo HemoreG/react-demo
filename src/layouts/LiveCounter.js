@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 import {Button, Container, Heading, Hero, Section} from 'react-bulma-components';
-// import {w3cwebsocket as W3CWebSocket} from 'websocket';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {changeTheme} from "../actions/appAction";
 import {connect} from "react-redux";
@@ -11,7 +10,6 @@ const sectionStyle = {
     padding: '3rem 1.5rem 3rem 0rem',
 };
 
-// const client = new W3CWebSocket('ws://WWW.XXX.YYY.ZZZ:8000');
 
 class LiveCounter extends React.Component {
     constructor(props) {

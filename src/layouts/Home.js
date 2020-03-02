@@ -3,9 +3,10 @@ import {withTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 import reactIcon from '../logo.svg'
 import {connect} from 'react-redux';
-import {Button, Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Button, Container, Heading, Hero, Section, Columns} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {changePosition} from "../actions/appAction";
+import qrCode from '../assets/images/qrcode.svg'
 
 function Home({props, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
@@ -21,30 +22,20 @@ function Home({props, state, t}) {
             <Hero color={state.currentTheme === 'light' ? 'info' : 'dark'} size="fullheight">
                 <Hero.Body>
                     <Container>
-                        <img src={reactIcon} className="App-logo" alt="logo"/>
-                        <Heading>{t('welcome')}</Heading>
-                        <Heading subtitle size={3}>
-                            {t('homeSubtitle')}
-                        </Heading>
+                        <Columns>
+                            <Columns.Column>
+                                <img src={reactIcon} className="App-logo" alt="logo"/>
+                                <Heading>{t('welcome')}</Heading>
+                                <Heading subtitle size={3}>
+                                    {t('homeSubtitle')}
+                                </Heading>            
+                            </Columns.Column>
+                            <Columns.Column>
+                                <img alt="QR Code" src={qrCode}/>
+                            </Columns.Column>
+                        </Columns>
                         <Section style={sectionStyle}>
                             <Button.Group>
-                                {
-                                    state.position === 'admin' ?
-                                        (
-                                            <Link to="/qr-code">
-                                                <Button className="is-hidden-touch" style={qrStyle}>
-                                                    <span className="icon">
-                                                        <FontAwesomeIcon icon="qrcode"/>
-                                                    </span>
-                                                </Button>
-                                            </Link>
-                                        ) : null
-                                }
-                                <Button className="is-hidden-touch" onClick={() => props.changePosition()}>
-                                    <span className="icon">
-                                        <FontAwesomeIcon icon="user-shield"/>
-                                    </span>
-                                </Button>
                                 <Link to="/theme">
                                     <Button>
                                         <span>{t('homeGoToDemo')}</span>
