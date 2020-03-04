@@ -6,11 +6,11 @@ import {Container, Heading, Hero} from 'react-bulma-components';
 import {changeTheme} from "../actions/appAction";
 import {connect} from "react-redux";
 
-function Loading({props, state, t}) {
+function Loading({state, t}) {
 
     return (
         <Fragment>
-            <Hero color={state.currentTheme === 'light' ? 'info' : 'dark'} size="fullheight">
+            <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'} size="fullheight">
                 <Hero.Body>
                     <Container>
                         <img src={reactIcon} className="App-logo" alt="logo"/>

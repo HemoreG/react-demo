@@ -4,6 +4,10 @@ export const changeTheme = () => ({
     type: 'CHANGETHEME'
 });
 
+export const toggleHeader = () => ({
+    type: 'TOGGLEHEADER'
+});
+
 export const increment = () => send({event: "increment"});
 export const decrement = () => send({event: "decrement"});
 export const resetState = () => send({event: "reset"});

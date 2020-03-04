@@ -1,0 +1,53 @@
+import React, {Fragment} from 'react';
+// import deps...
+
+class LiveCounter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0
+        };
+    }
+
+    up() {
+        this.props.increment()
+    }
+
+    down() {
+        this.props.decrement()
+    }
+
+    render() {
+        const {t, state} = this.props;
+        return (
+            <Section style={sectionCounter}>
+                <Heading>{state.count}</Heading>
+                <Button.Group>
+                    <Button onClick={() => this.down()}>
+                        <span>{t('minus')}</span>
+                        <span className="icon">
+                            <FontAwesomeIcon icon="minus"/>
+                        </span>
+                    </Button>
+                    <Button onClick={() => this.up()}>
+                        <span>{t('plus')}</span>
+                        <span className="icon">
+                            <FontAwesomeIcon icon="plus"/>
+                        </span>
+                    </Button>
+                </Button.Group>
+            </Section>
+        );
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    increment: () => dispatch(increment()),
+    decrement: () => dispatch(decrement()),
+});
+
+const mapStateToProps = (state) => ({
+    state: state.rootReducers
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(LiveCounter));

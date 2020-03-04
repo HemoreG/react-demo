@@ -1,5 +1,3 @@
-// extract (we hid unnecessary)
-
 import React, {Fragment} from 'react';
 // import deps...
 
@@ -7,7 +5,6 @@ class Counter extends React.Component {
     constructor(props) {
             super(props);
             this.state = {
-                code: '',
                 count: 0
             };
         }
@@ -23,30 +20,25 @@ class Counter extends React.Component {
     render() {
         const {t, props, state} = this.props;
         return (
-            <Fragment>
-                <Container>
-                    <Section>
-                        <Heading>{this.state.count}</Heading>
-                       <Button.Group>
-                           <Button onClick={() => this.down()}>
-                               <span>{t('minus')}</span>
-                               <span className="icon">
-                                   <FontAwesomeIcon icon="minus"/>
-                               </span>
-                           </Button>
-                           <Button onClick={() => this.up()}>
-                               <span>{t('plus')}</span>
-                               <span className="icon">
-                                   <FontAwesomeIcon icon="plus"/>
-                               </span>
-                           </Button>
-                       </Button.Group>
-                    </Section>
-                </Container>
-            </Fragment>
+            <Section>
+               <Heading>{this.state.count}</Heading>
+               <Button.Group>
+                   <Button onClick={() => this.down()}>
+                       <span>{t('minus')}</span>
+                       <span className="icon">
+                           <FontAwesomeIcon icon="minus"/>
+                       </span>
+                   </Button>
+                   <Button onClick={() => this.up()}>
+                       <span>{t('plus')}</span>
+                       <span className="icon">
+                           <FontAwesomeIcon icon="plus"/>
+                       </span>
+                   </Button>
+               </Button.Group>
+            </Section>
         );
     }
 }
-
 
 export default withTranslation()(ThemeClass);

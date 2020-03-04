@@ -7,6 +7,7 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import icons from './fontLibrary';
 import Loading from "./layouts/Loading";
 import {connect} from 'react-redux';
+import NavBarCompo from "./components/NavBarCompo";
 
 library.add(...icons);
 
@@ -15,6 +16,7 @@ function App() {
 
     return (
         <Router>
+            <NavBarCompo/>
             {routes.map((route, index) => (
                 <Suspense key={index} fallback={<Loading/>}>
                     <Route

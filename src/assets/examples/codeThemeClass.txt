@@ -1,67 +1,32 @@
-// extract (we hid unnecessary)
-
 import React, {Fragment} from 'react';
 // import deps...
 
 class ThemeClass extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            code: '',
-            theme: 'info'
-        };
-    }
-
-    setTheme = () => {
-        this.setState({
-            theme: this.state.theme === 'info' ? 'dark' : 'info'
-        });
-    }
-
-    setCode = text => {
-        this.setState({
-            code: text
-        });
-    }
 
     render() {
-        const {t} = this.props;
+        const {t, state, changeTheme} = this.props;
+
         return (
-            <Fragment>
-                <Hero color={this.state.theme}>
-                    <Hero.Body>
-                        <Container>
-                            <Heading>{t('reactStateClass')}</Heading>
-                            <Heading subtitle size={3}>
-                                {t('themeSubtitleClass')}
-                            </Heading>
-                            <Section style={sectionStyle}>
-                                <Button.Group>
-                                    <Button
-                                        onClick={() => this.setTheme()}
-                                    >
-                                        <span>{t('changeTheme')}</span>
-                                        <span className="icon">
-                                            <FontAwesomeIcon icon="lightbulb"/>
-                                        </span>
-                                    </Button>
-                                    <Link to="/demo">
-                                        <Button>
-                                            <span>{t('continueDemo')}</span>
-                                            <span className="icon">
-                                                    <FontAwesomeIcon icon="chevron-right"/>
-                                                </span>
-                                        </Button>
-                                    </Link>
-                                </Button.Group>
-                            </Section>
-                        </Container>
-                    </Hero.Body>
-                </Hero>
-            </Fragment>
+            <Section>
+                <Button
+                    onClick={() => changeTheme()}
+                >
+                    <span>{t('changeTheme')}</span>
+                    <span className="icon">
+                        <FontAwesomeIcon icon="lightbulb"/>
+                    </span>
+                </Button>
+            </Section>
         );
     }
 }
 
+const mapDispatchToProps = dispatch => ({
+    changeTheme: () => dispatch(changeTheme()),
+});
 
-export default withTranslation()(ThemeClass);
+const mapStateToProps = (state) => ({
+    state: state.rootReducers
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ThemeClass));

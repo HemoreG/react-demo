@@ -1,19 +1,25 @@
 // Lets assume it's the global state (you can add field here)
 const initialState = {
     currentPage: '/',
-    currentTheme: 'light',
+    currentTheme: 'info',
     count: 0,
-    visitors: 0
+    visitors: 0,
+    showHeader: false
 };
 
 // Add your action type here + describe what it does functionally (don't forget to add '...state' to get other fields)
 
 export default function rootReducers(state = initialState, action) {
     switch (action.type) {
+        case "TOGGLEHEADER":
+            return {
+                ...state,
+                showHeader: !state.showHeader
+            };
         case "CHANGETHEME":
             return {
                 ...state,
-                currentTheme: state.currentTheme === 'light' ? 'dark' : 'light'
+                currentTheme: state.currentTheme === 'info' ? 'dark' : 'info'
             };
         case "REDUX_WEBSOCKET::MESSAGE":
             switch (Object.keys(JSON.parse(action.payload.message))[0]) {

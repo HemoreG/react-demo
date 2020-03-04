@@ -1,26 +1,19 @@
 import React, {Fragment, useState} from 'react';
 import {withTranslation} from 'react-i18next';
-import {Link} from 'react-router-dom';
-import {Button, Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Button, Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import codeTheme from '../assets/examples/codeTheme.txt';
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
-import {changePath, changeTheme} from "../actions/appAction";
+import {changeTheme} from "../actions/appAction";
 import {connect} from "react-redux";
 
-function Theme({props, state, t}) {
+function Theme({changeTheme, state, t}) {
 
-
-    const sectionStyle = {
-        padding: '3rem 1.5rem 3rem 0rem',
-    };
     const customSection = {
         padding: '1.5rem 1.5rem 1.5rem 1.5rem',
     };
-    const customButton = {
-        margin: '0rem .0rem .5rem 0.5rem',
-    };
+
     const [code, setCode] = useState('');
 
     fetch(codeTheme)
@@ -31,61 +24,52 @@ function Theme({props, state, t}) {
 
     return (
         <Fragment>
-            <Hero color={state.currentTheme === 'light' ? 'info' : 'dark'}>
-                <Hero.Body>
-                    <Container>
-                        <Heading>{t('reactState')}</Heading>
-                        <Heading subtitle size={3}>
-                            {t('themeSubtitle')}
-                        </Heading>
-                        <Section style={sectionStyle}>
-                            <Button.Group>
-                                <Button
-                                    onClick={() => props.changeTheme()}
-                                >
-                                    <span>{t('changeTheme')}</span>
-                                    <span className="icon">
-                                        <FontAwesomeIcon icon="lightbulb"/>
-                                    </span>
-                                </Button>
-                                <Link to="/theme-class" onClick={() => props.changePath()}>
-                                    <Button>
-                                        <span>{t('continueDemo')}</span>
-                                        <span className="icon">
-                                                    <FontAwesomeIcon icon="chevron-right"/>
-                                                </span>
-                                    </Button>
-                                </Link>
-                                <Link to={state.currentPage}>
-                                    <Button style={customButton}>
-                                        <span>{t('followTheDemo')}</span>
-                                        <span className="icon">
-                                            <FontAwesomeIcon icon="paper-plane"/>
-                                        </span>
-                                    </Button>
-                                </Link>
-                            </Button.Group>
+            {
+                state.showHeader ? (
+                    <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
+                        <Hero.Body>
+                            <Container>
+                                <Heading>{t('reactState')}</Heading>
+                                <Heading subtitle size={3}>
+                                    {t('themeSubtitle')}
+                                </Heading>
+                            </Container>
+                        </Hero.Body>
+                    </Hero>
+                ) : null
+            }
+            <Container>
+                <Columns>
+                    <Columns.Column size={3}>
+                        <Section>
+                            <Button
+                                onClick={() => changeTheme()}
+                            >
+                                <span>{t('changeTheme')}</span>
+                                <span className="icon">
+                                <FontAwesomeIcon icon="lightbulb"/>
+                            </span>
+                            </Button>
                         </Section>
-                    </Container>
-                </Hero.Body>
-            </Hero>
-            <Section style={customSection}>
-                <SyntaxHighlighter
-                    showLineNumbers language="jsx"
-                    style={state.currentTheme === 'light' ? prism : atomDark}
-                >
-                    {code}
-                </SyntaxHighlighter>
-            </Section>
+                    </Columns.Column>
+                    <Columns.Column size={9}>
+                        <Section style={customSection}>
+                            <SyntaxHighlighter
+                                showLineNumbers language="jsx"
+                                style={state.currentTheme === 'info' ? prism : atomDark}
+                            >
+                                {code}
+                            </SyntaxHighlighter>
+                        </Section>
+                    </Columns.Column>
+                </Columns>
+            </Container>
         </Fragment>
     );
 }
 
 const mapDispatchToProps = dispatch => ({
-    props: {
-        changeTheme: () => dispatch(changeTheme()),
-        changePath: () => dispatch(changePath('theme-class'))
-    }
+    changeTheme: () => dispatch(changeTheme()),
 });
 
 const mapStateToProps = (state) => ({

@@ -1,43 +1,28 @@
-// extract (we hid unnecessary)
-
-import React, {Fragment, useState} from 'react';
+import React, {Fragment} from 'react';
 // import deps...
 
-function Theme({t}) {
-    const [theme, setTheme] = useState('info');
+function Theme({changeTheme, state, t}) {
 
     return (
-        <Hero color={theme}>
-            <Hero.Body>
-                <Container>
-                    <Heading>{t('reactState')}</Heading>
-                    <Heading subtitle size={3}>
-                        {t('themeSubtitle')}
-                    </Heading>
-                    <Section>
-                        <Button.Group>
-                            <Button
-                                onClick={() => setTheme(theme === 'info' ? 'dark' : 'info')}
-                            >
-                                <span>{t('changeTheme')}</span>
-                                <span className="icon">
-                                    <FontAwesomeIcon icon="lightbulb"/>
-                                </span>
-                            </Button>
-                            <Link to="/theme-class">
-                                <Button>
-                                    <span>{t('continueDemo')}</span>
-                                    <span className="icon">
-                                        <FontAwesomeIcon icon="chevron-right"/>
-                                    </span>
-                                </Button>
-                            </Link>
-                        </Button.Group>
-                    </Section>
-                </Container>
-            </Hero.Body>
-        </Hero>
+        <Section>
+            <Button
+                onClick={() => changeTheme()}
+            >
+                <span>{t('changeTheme')}</span>
+                    <span className="icon">
+                    <FontAwesomeIcon icon="lightbulb"/>
+                </span>
+            </Button>
+        </Section>
     );
 }
 
-export default withTranslation()(Theme);
+const mapDispatchToProps = dispatch => ({
+    changeTheme: () => dispatch(changeTheme()),
+});
+
+const mapStateToProps = (state) => ({
+    state: state.rootReducers
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Theme));
