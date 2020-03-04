@@ -25,7 +25,7 @@ function NavBarCompo({toggleHeader, changePath, state, t}) {
                     </span>
                     <span>{state.visitors}</span>
                 </Navbar.Item>
-                <Navbar.Item renderAs={Link} to={state.currentPage} onClick={() => changePath("/")}>
+                <Navbar.Item renderAs={Link} to={state.currentPage}>
                     <img
                         className="App-logo"
                         src={reactIcon}
