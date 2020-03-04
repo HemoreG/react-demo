@@ -5,6 +5,7 @@ import {Navbar} from 'react-bulma-components';
 import reactIcon from "../logo.svg";
 import {Link} from "react-router-dom";
 import {changePath, toggleHeader} from "../actions/appAction";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function NavBarCompo({toggleHeader, changePath, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
@@ -18,6 +19,12 @@ function NavBarCompo({toggleHeader, changePath, state, t}) {
             transparent={false}
         >
             <Navbar.Brand>
+                <Navbar.Item renderAs="div">
+                    <span className="icon">
+                        <FontAwesomeIcon icon="link"/>
+                    </span>
+                    <span>{state.visitors}</span>
+                </Navbar.Item>
                 <Navbar.Item renderAs={Link} to={state.currentPage}>
                     <img
                         className="App-logo"
@@ -25,7 +32,6 @@ function NavBarCompo({toggleHeader, changePath, state, t}) {
                         alt="Logo React"/>
                     {t('followTheDemo')}
                 </Navbar.Item>
-
                 <Navbar.Burger onClick={() => setOpen(!open)}/>
             </Navbar.Brand>
             <Navbar.Menu>

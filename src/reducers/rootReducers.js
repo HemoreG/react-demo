@@ -23,6 +23,13 @@ export default function rootReducers(state = initialState, action) {
             };
         case "REDUX_WEBSOCKET::MESSAGE":
             switch (Object.keys(JSON.parse(action.payload.message))[0]) {
+                case 'state':
+                    return {
+                        ...state,
+                        currentPage: JSON.parse(action.payload.message).state.path,
+                        count: JSON.parse(action.payload.message).state.count,
+                        visitors: JSON.parse(action.payload.message).state.connections
+                    };
                 case 'count':
                     return {
                         ...state,

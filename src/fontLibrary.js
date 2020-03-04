@@ -3,6 +3,7 @@ import {
     faChevronRight,
     faHome,
     faLightbulb,
+    faLink,
     faMinus,
     faPaperPlane,
     faPlus,
@@ -10,4 +11,4 @@ import {
     faUserShield
 } from '@fortawesome/free-solid-svg-icons';
 
-export default [faChevronLeft, faHome, faChevronRight, faLightbulb, faUserShield, faQrcode, faPlus, faMinus, faPaperPlane]
+export default [faChevronLeft, faHome, faChevronRight, faLightbulb, faUserShield, faQrcode, faPlus, faMinus, faPaperPlane, faLink]

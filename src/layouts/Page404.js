@@ -26,9 +26,9 @@ function Page404({changeTheme, state, data, t}) {
                                 <Button
                                     onClick={() => changeTheme()}
                                 >
-										<span className="icon">
-											<FontAwesomeIcon icon="lightbulb"/>
-										</span>
+                                    <span className="icon">
+                                        <FontAwesomeIcon icon="lightbulb"/>
+                                    </span>
                                     <span>{t('changeTheme')}</span>
                                 </Button>
                                 <Button
