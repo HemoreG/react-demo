@@ -1,12 +1,13 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 // import deps...
 
-function Theme({changeTheme, state, t}) {
+function Theme({t}) {
+    const [theme, setTheme] = useState('info');
 
     return (
         <Section>
             <Button
-                onClick={() => changeTheme()}
+                onClick={() => setTheme(theme === 'info' ? 'dark' : 'info')}
             >
                 <span>{t('changeTheme')}</span>
                     <span className="icon">
@@ -17,12 +18,4 @@ function Theme({changeTheme, state, t}) {
     );
 }
 
-const mapDispatchToProps = dispatch => ({
-    changeTheme: () => dispatch(changeTheme()),
-});
-
-const mapStateToProps = (state) => ({
-    state: state.rootReducers
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Theme));
+export default withTranslation()(Theme);

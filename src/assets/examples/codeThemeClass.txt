@@ -2,14 +2,26 @@ import React, {Fragment} from 'react';
 // import deps...
 
 class ThemeClass extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            theme: 'info'
+        };
+    }
+
+    changeTheme = () => {
+        this.setState({
+            theme: this.state.theme === 'info' ? 'dark' : 'info'
+        });
+    }
 
     render() {
-        const {t, state, changeTheme} = this.props;
+        const {t} = this.props;
 
         return (
             <Section>
                 <Button
-                    onClick={() => changeTheme()}
+                    onClick={() => this.changeTheme()}
                 >
                     <span>{t('changeTheme')}</span>
                     <span className="icon">
@@ -21,12 +33,4 @@ class ThemeClass extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    changeTheme: () => dispatch(changeTheme()),
-});
-
-const mapStateToProps = (state) => ({
-    state: state.rootReducers
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ThemeClass));
+export default withTranslation()(ThemeClass);
