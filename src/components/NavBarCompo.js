@@ -19,18 +19,21 @@ function NavBarCompo({toggleHeader, changePath, state, t}) {
             transparent={false}
         >
             <Navbar.Brand>
+
+                <Navbar.Item renderAs={Link} to="/">
+                    <img
+                        className="App-logo"
+                        src={reactIcon}
+                        alt="Logo React"/>
+                </Navbar.Item>
+                <Navbar.Item renderAs={Link} to={state.currentPage}>
+                    {t('followTheDemo')}
+                </Navbar.Item>
                 <Navbar.Item renderAs="div">
                     <span className="icon">
                         <FontAwesomeIcon icon="link"/>
                     </span>
                     <span>{state.visitors}</span>
-                </Navbar.Item>
-                <Navbar.Item renderAs={Link} to={state.currentPage}>
-                    <img
-                        className="App-logo"
-                        src={reactIcon}
-                        alt="Logo React"/>
-                    {t('followTheDemo')}
                 </Navbar.Item>
                 <Navbar.Burger onClick={() => setOpen(!open)}/>
             </Navbar.Brand>

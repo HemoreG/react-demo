@@ -3,11 +3,15 @@ import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
 import {Button, Container, Heading, Hero, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {resetState} from "../actions/appAction";
+import {changePath, resetState} from "../actions/appAction";
 import qrCode from '../assets/images/qrcode.svg'
 
 function Home({props, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
+    const resetEverything = () => {
+        props.resetState();
+        props.resetPath();
+    };
 
     const sectionStyle = {
         padding: '3rem 1.5rem 3rem 0rem',
@@ -27,7 +31,7 @@ function Home({props, state, t}) {
                             {t('homeSubtitle')}
                         </Heading>
                         <Section style={sectionStyle} className="is-hidden-touch">
-                            <Button onClick={() => props.resetState()}>
+                            <Button onClick={() => resetEverything()}>
                                 <span className="icon">
                                     <FontAwesomeIcon icon="user-shield"/>
                                 </span>
@@ -42,7 +46,8 @@ function Home({props, state, t}) {
 
 const mapDispatchToProps = dispatch => ({
     props: {
-        resetState: () => dispatch(resetState())
+        resetState: () => dispatch(resetState()),
+        resetPath: () => dispatch(changePath('/'))
     }
 });
 
