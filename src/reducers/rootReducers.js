@@ -22,31 +22,33 @@ export default function rootReducers(state = initialState, action) {
                 currentTheme: state.currentTheme === 'info' ? 'dark' : 'info'
             };
         case "REDUX_WEBSOCKET::MESSAGE":
-            switch (Object.keys(JSON.parse(action.payload.message))[0]) {
-                case 'state':
-                    return {
-                        ...state,
-                        currentPage: JSON.parse(action.payload.message).state.path,
-                        count: JSON.parse(action.payload.message).state.count,
-                        visitors: JSON.parse(action.payload.message).state.connections
-                    };
-                case 'count':
-                    return {
-                        ...state,
-                        count: JSON.parse(action.payload.message).count,
-                    };
-                case 'path':
-                    return {
-                        ...state,
-                        currentPage: JSON.parse(action.payload.message).path,
-                    };
-                case 'connections':
-                    return {
-                        ...state,
-                        visitors: JSON.parse(action.payload.message).connections
-                    };
-                default:
-                    return state;
+            if (Object.keys(JSON.parse(action.payload.message)).length > 1) {
+                return {
+                    ...state,
+                    currentPage: JSON.parse(action.payload.message).path,
+                    count: JSON.parse(action.payload.message).count,
+                    visitors: JSON.parse(action.payload.message).connections
+                };
+            } else {
+                switch (Object.keys(JSON.parse(action.payload.message))[0]) {
+                    case 'count':
+                        return {
+                            ...state,
+                            count: JSON.parse(action.payload.message).count,
+                        };
+                    case 'path':
+                        return {
+                            ...state,
+                            currentPage: JSON.parse(action.payload.message).path,
+                        };
+                    case 'connections':
+                        return {
+                            ...state,
+                            visitors: JSON.parse(action.payload.message).connections
+                        };
+                    default:
+                        return state;
+                }
             }
         default:
             return state;

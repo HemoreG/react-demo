@@ -8,12 +8,13 @@ export const toggleHeader = () => ({
     type: 'TOGGLEHEADER'
 });
 
-export const increment = () => send({event: "increment"});
-export const decrement = () => send({event: "decrement"});
-export const resetState = () => send({event: "reset"});
-export const changePath = (path) => send(localStorage.getItem('token') === 'QP4FAg3TakcxS68B8ekD' ? {
+export const increment = () => send({event: "increment_count"});
+export const decrement = () => send({event: "decrement_count"});
+export const resetState = () => send({event: "reset_count"});
+export const getState = () => send({event: "get_state"});
+export const changePath = (path) => send({
     event: "set_path",
     path: path,
-    token: "QP4FAg3TakcxS68B8ekD"
-} : null);
+    token: localStorage.getItem('token')
+});
 // Actions needed inside the App Component

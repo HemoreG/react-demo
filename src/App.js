@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, {Suspense, useEffect} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import routes from './routes';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
@@ -8,11 +8,18 @@ import icons from './fontLibrary';
 import Loading from "./layouts/Loading";
 import {connect} from 'react-redux';
 import NavBarCompo from "./components/NavBarCompo";
+import {getState} from "./actions/appAction";
 
 library.add(...icons);
 
 
-function App() {
+function App(props) {
+
+    useEffect(function getState() {
+        if (props.state.currentPage === '/') {
+            props.getState();
+        }
+    });
 
     return (
         <Router>
@@ -30,8 +37,12 @@ function App() {
     );
 }
 
+const mapDispatchToProps = dispatch => ({
+    getState: () => dispatch(getState()),
+});
+
 const mapStateToProps = (state) => ({
     state: state.rootReducers
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

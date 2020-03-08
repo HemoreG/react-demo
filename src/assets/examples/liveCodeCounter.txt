@@ -17,7 +17,7 @@ class LiveCounter extends React.Component {
     }
 
     reset() {
-        this.props.decrement()
+        this.props.reset()
     }
 
     render() {
