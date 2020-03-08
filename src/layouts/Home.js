@@ -31,13 +31,13 @@ function Home({props, state, t}) {
                             {t('homeSubtitle')}
                         </Heading>
                         <Section style={sectionStyle}>
-                            <Button.Group className="is-hidden-touch">
+                            <Button.Group>
                                 <Button onClick={() => props.changeTheme()}>
                                     <span className="icon">
                                         <FontAwesomeIcon icon="lightbulb"/>
                                     </span>
                                 </Button>
-                                <Button onClick={() => resetEverything()}>
+                                <Button className="is-hidden-touch" onClick={() => resetEverything()}>
                                     <span className="icon">
                                         <FontAwesomeIcon icon="user-shield"/>
                                     </span>
