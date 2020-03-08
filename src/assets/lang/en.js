@@ -11,6 +11,7 @@ export const en = {
     "liveCounterSubtitle": "Create a shared counter using websocket",
     "loading": "Loading...",
     "minus": "Subtract 1",
+    "reset": "Reset",
     "pageNotFoundTitle": "Oops... Page not found",
     "pageNotFoundContent": "The page you are looking for does not seem to exist.",
     "plus": "Add 1",

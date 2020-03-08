@@ -11,6 +11,7 @@ export const fr = {
     "liveCounterSubtitle": "Créer un compteur partagé en utilisant une websocket",
     "loading": "Chargement...",
     "minus": "Enlever 1",
+    "reset": "Mettre à 0",
     "pageNotFoundTitle": "Oops... La page n'a pas été trouvée",
     "pageNotFoundContent": "La page que vous recherchez ne semble pas exister.",
     "plus": "Ajouter 1",

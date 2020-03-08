@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import codeCounter from "../assets/examples/codeCounter.txt";
+import { faCookieBite } from '@fortawesome/free-solid-svg-icons'
 
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
@@ -46,6 +47,12 @@ class Counter extends React.Component {
         });
     }
 
+    reset () {
+        this.setState({
+            count: 0
+        });
+    }
+
     render() {
         const {t, state} = this.props;
         return (
@@ -66,26 +73,32 @@ class Counter extends React.Component {
                 }
                 <Container>
                     <Columns>
-                        <Columns.Column size={3}>
+                        <Columns.Column size={4}>
                             <Section>
                                 <Heading>{this.state.count}</Heading>
                                 <Button.Group>
                                     <Button onClick={() => this.down()}>
                                         <span>{t('minus')}</span>
                                         <span className="icon">
-                                        <FontAwesomeIcon icon="minus"/>
-                                    </span>
+                                            <FontAwesomeIcon icon="minus"/>
+                                        </span>
+                                    </Button>
+                                    <Button onClick={() => this.reset()}>
+                                        <span>{t('reset')}</span>
+                                        <span className="icon">
+                                            <FontAwesomeIcon icon={faCookieBite} />
+                                        </span>
                                     </Button>
                                     <Button onClick={() => this.up()}>
                                         <span>{t('plus')}</span>
                                         <span className="icon">
-                                        <FontAwesomeIcon icon="plus"/>
-                                    </span>
+                                            <FontAwesomeIcon icon="plus"/>
+                                        </span>
                                     </Button>
                                 </Button.Group>
                             </Section>
                         </Columns.Column>
-                        <Columns.Column size={9}>
+                        <Columns.Column size={8}>
                             <Section style={customSection}>
                                 <SyntaxHighlighter
                                     showLineNumbers language="jsx"

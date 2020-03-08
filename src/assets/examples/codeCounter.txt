@@ -1,5 +1,4 @@
-import React, {Fragment} from 'react';
-// import deps...
+import React from 'react';
 
 class Counter extends React.Component {
     constructor(props) {
@@ -17,28 +16,20 @@ class Counter extends React.Component {
         this.setState({count: this.state.count - 1});
     }
 
+    reset() {
+        this.setState({count: 0});
+    }
+
     render() {
-        const {t, props, state} = this.props;
         return (
-            <Section>
-               <Heading>{this.state.count}</Heading>
-               <Button.Group>
-                   <Button onClick={() => this.down()}>
-                       <span>{t('minus')}</span>
-                       <span className="icon">
-                           <FontAwesomeIcon icon="minus"/>
-                       </span>
-                   </Button>
-                   <Button onClick={() => this.up()}>
-                       <span>{t('plus')}</span>
-                       <span className="icon">
-                           <FontAwesomeIcon icon="plus"/>
-                       </span>
-                   </Button>
-               </Button.Group>
-            </Section>
+            <div>
+                <p>{this.state.count}</p>
+                <button onClick={() => this.down()}> - 1 </button>
+                <button onClick={() => this.reset()}> Reset </button>
+                <button onClick={() => this.up()}> + 1 </button>
+            </div>
         );
     }
 }
 
-export default withTranslation()(ThemeClass);
+export default Counter;

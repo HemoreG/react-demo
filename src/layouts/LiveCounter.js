@@ -2,11 +2,12 @@ import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
 import {Button, Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {decrement, increment} from "../actions/appAction";
+import {decrement, increment, resetState} from "../actions/appAction";
 import {connect} from "react-redux";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import liveCodeCounter from "../assets/examples/liveCodeCounter.txt";
+import { faCookieBite } from '@fortawesome/free-solid-svg-icons'
 
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
@@ -43,6 +44,10 @@ class LiveCounter extends React.Component {
         this.props.decrement()
     }
 
+    reset() {
+        this.props.reset();
+    }
+
     render() {
         const {t, state} = this.props;
         return (
@@ -63,7 +68,7 @@ class LiveCounter extends React.Component {
                 }
                 <Container>
                     <Columns>
-                        <Columns.Column size={3}>
+                        <Columns.Column size={4}>
                             <Section>
                                 <Heading>{state.count}</Heading>
                                 <Button.Group>
@@ -71,6 +76,12 @@ class LiveCounter extends React.Component {
                                         <span>{t('minus')}</span>
                                         <span className="icon">
                                             <FontAwesomeIcon icon="minus"/>
+                                        </span>
+                                    </Button>
+                                    <Button onClick={() => this.reset()}>
+                                        <span>{t('reset')}</span>
+                                        <span className="icon">
+                                            <FontAwesomeIcon icon={faCookieBite}/>
                                         </span>
                                     </Button>
                                     <Button onClick={() => this.up()}>
@@ -82,7 +93,7 @@ class LiveCounter extends React.Component {
                                 </Button.Group>
                             </Section>
                         </Columns.Column>
-                        <Columns.Column size={9}>
+                        <Columns.Column size={8}>
                             <Section style={customSection}>
                                 <SyntaxHighlighter
                                     showLineNumbers language="jsx"
@@ -102,6 +113,7 @@ class LiveCounter extends React.Component {
 const mapDispatchToProps = dispatch => ({
     increment: () => dispatch(increment()),
     decrement: () => dispatch(decrement()),
+    reset: () => dispatch(resetState()),
 });
 
 const mapStateToProps = (state) => ({
