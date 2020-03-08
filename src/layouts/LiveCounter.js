@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import liveCodeCounter from "../assets/examples/liveCodeCounter.txt";
-import { faCookieBite } from '@fortawesome/free-solid-svg-icons'
 
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
@@ -81,7 +80,7 @@ class LiveCounter extends React.Component {
                                     <Button onClick={() => this.reset()}>
                                         <span>{t('reset')}</span>
                                         <span className="icon">
-                                            <FontAwesomeIcon icon={faCookieBite}/>
+                                            <FontAwesomeIcon icon="cookie-bite"/>
                                         </span>
                                     </Button>
                                     <Button onClick={() => this.up()}>

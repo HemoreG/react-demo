@@ -6,7 +6,6 @@ import reactIcon from "../logo.svg";
 import {Link} from "react-router-dom";
 import {changePath, toggleHeader} from "../actions/appAction";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 function NavBarCompo({toggleHeader, changePath, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
@@ -32,7 +31,7 @@ function NavBarCompo({toggleHeader, changePath, state, t}) {
                 </Navbar.Item>
                 <Navbar.Item renderAs="div">
                     <span className="icon">
-                        <FontAwesomeIcon icon={faUser}/>
+                        <FontAwesomeIcon icon="user"/>
                     </span>
                     <span>{state.visitors}</span>
                 </Navbar.Item>

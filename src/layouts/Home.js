@@ -3,7 +3,7 @@ import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
 import {Button, Container, Heading, Hero, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {changePath, resetState} from "../actions/appAction";
+import {changePath, changeTheme, resetState} from "../actions/appAction";
 import qrCode from '../assets/images/qrcode.svg'
 
 function Home({props, state, t}) {
@@ -30,12 +30,19 @@ function Home({props, state, t}) {
                         <Heading subtitle size={3}>
                             {t('homeSubtitle')}
                         </Heading>
-                        <Section style={sectionStyle} className="is-hidden-touch">
-                            <Button onClick={() => resetEverything()}>
-                                <span className="icon">
-                                    <FontAwesomeIcon icon="user-shield"/>
-                                </span>
-                            </Button>
+                        <Section style={sectionStyle}>
+                            <Button.Group className="is-hidden-touch">
+                                <Button onClick={() => props.changeTheme()}>
+                                    <span className="icon">
+                                        <FontAwesomeIcon icon="lightbulb"/>
+                                    </span>
+                                </Button>
+                                <Button onClick={() => resetEverything()}>
+                                    <span className="icon">
+                                        <FontAwesomeIcon icon="user-shield"/>
+                                    </span>
+                                </Button>
+                            </Button.Group>
                         </Section>
                     </Container>
                 </Hero.Body>
@@ -46,6 +53,7 @@ function Home({props, state, t}) {
 
 const mapDispatchToProps = dispatch => ({
     props: {
+        changeTheme: () => dispatch(changeTheme()),
         resetState: () => dispatch(resetState()),
         resetPath: () => dispatch(changePath('/'))
     }
