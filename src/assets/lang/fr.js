@@ -2,6 +2,7 @@ export const fr = {
     "changeTheme": "Changer le thème",
     "continueDemo": "Continuer la démo",
     "counterSubtitle": "Créer un compteur local",
+    "dontFollowTheDemo": "Ne plus suivre la démo",
     "followTheDemo": "Suivre la démo",
     "goBack": "Retourner à la page précédente",
     "goToHome": "Aller à la page d'accueil",

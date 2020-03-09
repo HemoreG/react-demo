@@ -27,7 +27,7 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
                         alt="Logo React"/>
                 </Navbar.Item>
                 <Navbar.Item onClick={() => toggleFollow()}>
-                    {t('followTheDemo')}
+                    {t(state.isFollowing ? 'dontFollowTheDemo' : 'followTheDemo')}
                 </Navbar.Item>
                 <Navbar.Item renderAs="div">
                     <span className="icon">
