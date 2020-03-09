@@ -7,6 +7,7 @@ import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import {changeTheme} from "../actions/appAction";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 
 function Theme({changeTheme, state, t}) {
 
@@ -21,6 +22,10 @@ function Theme({changeTheme, state, t}) {
         .then(text => {
             setCode(text);
         });
+
+    if (state.isFollowing && state.currentPage !== 'theme') {
+        return <Redirect to={state.currentPage}/>;
+    }
 
     return (
         <Fragment>

@@ -7,6 +7,7 @@ import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import {changeTheme} from "../actions/appAction";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
@@ -36,7 +37,9 @@ class ThemeClass extends React.Component {
 
     render() {
         const {t, state, changeTheme} = this.props;
-
+        if (state.isFollowing && state.currentPage !== 'theme-class') {
+            return <Redirect to={state.currentPage}/>;
+        }
         return (
             <Fragment>
                 {

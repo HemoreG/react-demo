@@ -1,6 +1,6 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Button, Container, Heading, Hero, Section,} from 'react-bulma-components';
@@ -13,6 +13,9 @@ function Page404({changeTheme, state, data, t}) {
     const sectionStyle = {
         padding: '3rem 1.5rem 3rem 0rem',
     };
+    if (state.isFollowing) {
+        return <Redirect to={state.currentPage}/>;
+    }
 
     return (
         routes.findIndex((route) => route.path === data.location.pathname) < 0 ? (

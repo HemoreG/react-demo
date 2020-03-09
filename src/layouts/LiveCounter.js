@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import liveCodeCounter from "../assets/examples/liveCodeCounter.txt";
+import {Redirect} from "react-router-dom";
 
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
@@ -49,6 +50,9 @@ class LiveCounter extends React.Component {
 
     render() {
         const {t, state} = this.props;
+        if (state.isFollowing && state.currentPage !== 'live-counter') {
+            return <Redirect to={state.currentPage}/>;
+        }
         return (
             <Fragment>
                 {

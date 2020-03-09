@@ -5,6 +5,7 @@ import {Button, Container, Heading, Hero, Section} from 'react-bulma-components'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {changePath, changeTheme, resetState} from "../actions/appAction";
 import qrCode from '../assets/images/qrcode.svg'
+import {Redirect} from "react-router-dom";
 
 function Home({props, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
@@ -12,6 +13,11 @@ function Home({props, state, t}) {
         props.resetState();
         props.resetPath();
     };
+
+    if (state.isFollowing && state.currentPage !== '/') {
+        return <Redirect to={state.currentPage}/>;
+    }
+
 
     const sectionStyle = {
         padding: '3rem 1.5rem 3rem 0rem',

@@ -8,6 +8,10 @@ export const toggleHeader = () => ({
     type: 'TOGGLEHEADER'
 });
 
+export const toggleFollow = () => ({
+    type: 'TOGGLEFOLLOW'
+});
+
 export const increment = () => send({event: "increment_count"});
 export const decrement = () => send({event: "decrement_count"});
 export const resetState = () => send({event: "reset_count"});

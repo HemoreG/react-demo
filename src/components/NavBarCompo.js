@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
 import {Navbar} from 'react-bulma-components';
+
 import reactIcon from "../logo.svg";
 import {Link} from "react-router-dom";
-import {changePath, toggleHeader} from "../actions/appAction";
+import {changePath, toggleFollow, toggleHeader} from "../actions/appAction";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-function NavBarCompo({toggleHeader, changePath, state, t}) {
+function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
     const [open, setOpen] = useState(false);
 
@@ -19,14 +20,13 @@ function NavBarCompo({toggleHeader, changePath, state, t}) {
             transparent={false}
         >
             <Navbar.Brand>
-
                 <Navbar.Item renderAs={Link} to="/">
                     <img
                         className="App-logo"
                         src={reactIcon}
                         alt="Logo React"/>
                 </Navbar.Item>
-                <Navbar.Item renderAs={Link} to={state.currentPage}>
+                <Navbar.Item onClick={() => toggleFollow()}>
                     {t('followTheDemo')}
                 </Navbar.Item>
                 <Navbar.Item renderAs="div">
@@ -58,7 +58,8 @@ function NavBarCompo({toggleHeader, changePath, state, t}) {
 
 const mapDispatchToProps = dispatch => ({
     changePath: (path) => dispatch(changePath(path)),
-    toggleHeader: () => dispatch(toggleHeader())
+    toggleHeader: () => dispatch(toggleHeader()),
+    toggleFollow: () => dispatch(toggleFollow())
 });
 
 const mapStateToProps = (state) => ({

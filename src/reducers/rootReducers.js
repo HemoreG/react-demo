@@ -4,13 +4,19 @@ const initialState = {
     currentTheme: 'info',
     count: 0,
     visitors: 0,
-    showHeader: false
+    showHeader: false,
+    isFollowing: false
 };
 
 // Add your action type here + describe what it does functionally (don't forget to add '...state' to get other fields)
 
 export default function rootReducers(state = initialState, action) {
     switch (action.type) {
+        case "TOGGLEFOLLOW":
+            return {
+                ...state,
+                isFollowing: !state.isFollowing
+            };
         case "TOGGLEHEADER":
             return {
                 ...state,

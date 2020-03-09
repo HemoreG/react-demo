@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import codeCounter from "../assets/examples/codeCounter.txt";
+import {Redirect} from "react-router-dom";
 
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
@@ -46,7 +47,7 @@ class Counter extends React.Component {
         });
     }
 
-    reset () {
+    reset() {
         this.setState({
             count: 0
         });
@@ -54,6 +55,9 @@ class Counter extends React.Component {
 
     render() {
         const {t, state} = this.props;
+        if (state.isFollowing && state.currentPage !== 'counter') {
+            return <Redirect to={state.currentPage}/>;
+        }
         return (
             <Fragment>
                 {
