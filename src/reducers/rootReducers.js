@@ -4,7 +4,7 @@ const initialState = {
     currentTheme: 'info',
     count: 0,
     visitors: 0,
-    showHeader: false,
+    showHeader: true,
     isFollowing: false
 };
 

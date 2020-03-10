@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Home = React.lazy(() => import('./layouts/Home'));
+const Component = React.lazy(() => import('./layouts/Component'));
 const Theme = React.lazy(() => import('./layouts/Theme'));
 const ThemeClass = React.lazy(() => import('./layouts/ThemeClass'));
 const LiveCounter = React.lazy(() => import('./layouts/LiveCounter'));
@@ -13,6 +14,11 @@ const routes = [
         path: '/',
         exact: true,
         main: () => <Home/>
+    },
+    {
+        path: '/component',
+        exact: false,
+        main: () => <Component/>
     },
     {
         path: '/theme',

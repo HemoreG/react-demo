@@ -44,16 +44,23 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
             </Navbar.Brand>
             <Navbar.Menu>
                 <Navbar.Container>
-                    <Navbar.Item renderAs={Link} to="counter" onClick={() => navigateAndCloseMenu("counter")}>
+                    <Navbar.Item renderAs={Link} to="/component" onClick={() => navigateAndCloseMenu("component")}>
+                        {t('reactComponent')}
+                    </Navbar.Item>
+                    <Navbar.Item renderAs={Link} to="/theme" onClick={() => navigateAndCloseMenu("theme")}>
+                        {t('reactState')}
+                    </Navbar.Item>
+                    <Navbar.Item renderAs={Link} to="/counter" onClick={() => navigateAndCloseMenu("counter")}>
                         {t('reactCounter')}
                     </Navbar.Item>
-                    <Navbar.Item renderAs={Link} to="live-counter" onClick={() => navigateAndCloseMenu("live-counter")}>
+                    <Navbar.Item renderAs={Link} to="/live-counter"
+                                 onClick={() => navigateAndCloseMenu("live-counter")}>
                         {t('reactLiveCounter')}
                     </Navbar.Item>
                 </Navbar.Container>
                 <Navbar.Container position="end">
                     <Navbar.Item onClick={() => toggleHeader()}>
-                        {t('toggleHeader')}
+                        {t(state.showHeader ? 'closeHeader' : 'openHeader')}
                     </Navbar.Item>
                 </Navbar.Container>
             </Navbar.Menu>
