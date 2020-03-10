@@ -11,6 +11,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
     const [open, setOpen] = useState(false);
+    const [openCounters, setOpenCounters] = useState(true);
+    const [openTheme, setOpenTheme] = useState(true);
 
     const navigateAndCloseMenu = (path) => {
         setOpen(false);
@@ -47,16 +49,35 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
                     <Navbar.Item renderAs={Link} to="/component" onClick={() => navigateAndCloseMenu("component")}>
                         {t('reactComponent')}
                     </Navbar.Item>
-                    <Navbar.Item renderAs={Link} to="/theme" onClick={() => navigateAndCloseMenu("theme")}>
-                        {t('reactState')}
+                    <Navbar.Item dropdown hoverable>
+                        <Navbar.Link arrowless={true} onClick={() => setOpenTheme(!openTheme)}>
+                            {t('themes')}
+                        </Navbar.Link>
+                        <Navbar.Dropdown hidden={!openTheme}>
+                            <Navbar.Item renderAs={Link} to="/theme" onClick={() => navigateAndCloseMenu("theme")}>
+                                {t('reactState')}
+                            </Navbar.Item>
+                            <Navbar.Item renderAs={Link} to="/theme-class"
+                                         onClick={() => navigateAndCloseMenu("theme-class")}>
+                                {t('reactStateClass')}
+                            </Navbar.Item>
+                        </Navbar.Dropdown>
                     </Navbar.Item>
-                    <Navbar.Item renderAs={Link} to="/counter" onClick={() => navigateAndCloseMenu("counter")}>
-                        {t('reactCounter')}
+                    <Navbar.Item dropdown hoverable>
+                        <Navbar.Link arrowless={true} onClick={() => setOpenCounters(!openCounters)}>
+                            {t('counters')}
+                        </Navbar.Link>
+                        <Navbar.Dropdown hidden={!openCounters}>
+                            <Navbar.Item renderAs={Link} to="/counter" onClick={() => navigateAndCloseMenu("counter")}>
+                                {t('reactCounter')}
+                            </Navbar.Item>
+                            <Navbar.Item renderAs={Link} to="/live-counter"
+                                         onClick={() => navigateAndCloseMenu("live-counter")}>
+                                {t('reactLiveCounter')}
+                            </Navbar.Item>
+                        </Navbar.Dropdown>
                     </Navbar.Item>
-                    <Navbar.Item renderAs={Link} to="/live-counter"
-                                 onClick={() => navigateAndCloseMenu("live-counter")}>
-                        {t('reactLiveCounter')}
-                    </Navbar.Item>
+
                 </Navbar.Container>
                 <Navbar.Container position="end">
                     <Navbar.Item onClick={() => toggleHeader()}>

@@ -7,7 +7,7 @@ import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import {changeTheme} from "../actions/appAction";
 import {connect} from "react-redux";
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
@@ -60,24 +60,14 @@ class ThemeClass extends React.Component {
                     <Columns>
                         <Columns.Column size={3}>
                             <Section>
-                                <Button.Group>
-                                    <Button
-                                        onClick={() => changeTheme()}
-                                    >
-                                        <span>{t('changeTheme')}</span>
-                                        <span className="icon">
+                                <Button
+                                    onClick={() => changeTheme()}
+                                >
+                                    <span>{t('changeTheme')}</span>
+                                    <span className="icon">
                                         <FontAwesomeIcon icon="lightbulb"/>
                                     </span>
-                                    </Button>
-                                    <Link
-                                        to="theme"
-                                    >
-                                        <Button>
-                                            <span>Version : {t('reactState')}</span>
-                                        </Button>
-                                    </Link>
-                                </Button.Group>
-
+                                </Button>
                             </Section>
                         </Columns.Column>
                         <Columns.Column size={9}>
