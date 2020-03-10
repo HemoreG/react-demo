@@ -12,6 +12,11 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
     const [open, setOpen] = useState(false);
 
+    const navigateAndCloseMenu = (path) => {
+        setOpen(false);
+        changePath(path)
+    };
+
     return (
         <Navbar
             color={state.currentTheme}
@@ -39,10 +44,10 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
             </Navbar.Brand>
             <Navbar.Menu>
                 <Navbar.Container>
-                    <Navbar.Item renderAs={Link} to="counter" onClick={() => changePath("counter")}>
+                    <Navbar.Item renderAs={Link} to="counter" onClick={() => navigateAndCloseMenu("counter")}>
                         {t('reactCounter')}
                     </Navbar.Item>
-                    <Navbar.Item renderAs={Link} to="live-counter" onClick={() => changePath("live-counter")}>
+                    <Navbar.Item renderAs={Link} to="live-counter" onClick={() => navigateAndCloseMenu("live-counter")}>
                         {t('reactLiveCounter')}
                     </Navbar.Item>
                 </Navbar.Container>
