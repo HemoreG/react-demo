@@ -7,7 +7,8 @@ const ThemeClass = React.lazy(() => import('./layouts/ThemeClass'));
 const LiveCounter = React.lazy(() => import('./layouts/LiveCounter'));
 const Counter = React.lazy(() => import('./layouts/Counter'));
 const Page404 = React.lazy(() => import('./layouts/Page404'));
-
+const Redux = React.lazy(() => import('./layouts/Redux'));
+const VirtualDOM = React.lazy(() => import('./layouts/VirtualDOM'));
 
 const routes = [
     {
@@ -19,6 +20,16 @@ const routes = [
         path: '/component',
         exact: false,
         main: () => <Component/>
+    },
+    {
+        path: '/redux',
+        exact: false,
+        main: () => <Redux/>
+    },
+    {
+        path: '/virtual-dom',
+        exact: false,
+        main: () => <VirtualDOM/>
     },
     {
         path: '/theme',

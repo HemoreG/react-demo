@@ -13,6 +13,7 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
     const [open, setOpen] = useState(false);
     const [openCounters, setOpenCounters] = useState(true);
     const [openTheme, setOpenTheme] = useState(true);
+    const [openOperation, setOpenOperation] = useState(true);
 
     const navigateAndCloseMenu = (path) => {
         setOpen(false);
@@ -46,9 +47,25 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
             </Navbar.Brand>
             <Navbar.Menu>
                 <Navbar.Container>
-                    <Navbar.Item renderAs={Link} to="/component" onClick={() => navigateAndCloseMenu("component")}>
-                        {t('reactComponent')}
+                    <Navbar.Item dropdown hoverable>
+                        <Navbar.Link arrowless={true} onClick={() => setOpenOperation(!openOperation)}>
+                            {t('operations')}
+                        </Navbar.Link>
+                        <Navbar.Dropdown hidden={!openOperation}>
+                            <Navbar.Item renderAs={Link} to="/component"
+                                         onClick={() => navigateAndCloseMenu("component")}>
+                                {t('reactComponent')}
+                            </Navbar.Item>
+                            <Navbar.Item renderAs={Link} to="/virtual-dom"
+                                         onClick={() => navigateAndCloseMenu("virtual-dom")}>
+                                {t('virtualDom')}
+                            </Navbar.Item>
+                            <Navbar.Item renderAs={Link} to="/redux" onClick={() => navigateAndCloseMenu("redux")}>
+                                {t('redux')}
+                            </Navbar.Item>
+                        </Navbar.Dropdown>
                     </Navbar.Item>
+
                     <Navbar.Item dropdown hoverable>
                         <Navbar.Link arrowless={true} onClick={() => setOpenTheme(!openTheme)}>
                             {t('themes')}
