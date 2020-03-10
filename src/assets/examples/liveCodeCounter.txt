@@ -36,7 +36,7 @@ class LiveCounter extends React.Component {
 const mapDispatchToProps = dispatch => ({
     increment: () => dispatch(increment()),
     decrement: () => dispatch(decrement()),
-    decrement: () => dispatch(reset()),
+    reset: () => dispatch(reset()),
 });
 
 const mapStateToProps = (state) => ({
