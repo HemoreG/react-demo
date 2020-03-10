@@ -12,13 +12,7 @@ function CompoDescription2({t}) {
             <Columns>
                 <Columns.Column size={6}>
                     <Section>
-                        <Compo count={number}/>
-                    </Section>
-                </Columns.Column>
-                <Columns.Column size={6}>
-                    <Section>
                         <Heading>{t('componentDescription3')}</Heading>
-                        <Heading>{number}</Heading>
                         <Button.Group>
                             <Button onClick={() => setNumber(!number ? 0 : number - 1)}>
                                 <span>{t('minus')}</span>
@@ -33,6 +27,11 @@ function CompoDescription2({t}) {
                                     </span>
                             </Button>
                         </Button.Group>
+                    </Section>
+                </Columns.Column>
+                <Columns.Column size={6}>
+                    <Section>
+                        <Compo count={number}/>
                     </Section>
                 </Columns.Column>
             </Columns>

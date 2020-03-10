@@ -13,7 +13,6 @@ function CompoDescription1({t}) {
                 <Columns.Column size={6}>
                     <Section>
                         <Heading>{t('componentDescription1')}</Heading>
-                        <Heading>{number2}</Heading>
                         <Button.Group>
                             <Button onClick={() => setNumber2(!number2 ? 0 : number2 - 1)}>
                                 <span>{t('minusFirefox')}</span>
