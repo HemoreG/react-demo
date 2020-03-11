@@ -8,14 +8,14 @@ export default function MultiFirefox({count = 0}) {
         width: '10rem'
     };
 
-    let allCats = [];
+    let allFirefoxes = [];
     for (let i = 0; i < count; i++) {
-        allCats.push(
+        allFirefoxes.push(
             <Columns.Column key={i}>
                 <img style={firefoxStyle} src={pandaRoux} alt={"MultiFirefox image" + count}/>
             </Columns.Column>
         )
     }
 
-    return allCats;
+    return allFirefoxes;
 }
