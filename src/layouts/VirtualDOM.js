@@ -25,7 +25,7 @@ class VirtualDOM extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        if (this.state.term !== '') {
+        if (this.state.term.trim() !== '') {
             this.setState({
                 term: '',
                 items: [...this.state.items, this.state.term]
