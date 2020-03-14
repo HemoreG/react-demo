@@ -25,10 +25,12 @@ class VirtualDOM extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.setState({
-            term: '',
-            items: [...this.state.items, this.state.term]
-        });
+        if (this.state.term !== '') {
+            this.setState({
+                term: '',
+                items: [...this.state.items, this.state.term]
+            });   
+        }
     };
 
     removeTask = (index) => {
@@ -74,7 +76,7 @@ class VirtualDOM extends Component {
                                 <form style={customForm} onSubmit={this.onSubmit}>
                                     <div className="field has-addons">
                                         <div className="control">
-                                            <input className="input" value={this.state.term} onChange={this.onChange}/>
+                                            <input className="input" required value={this.state.term} onChange={this.onChange}/>
                                         </div>
                                         <div className="control">
                                             <button className="button">
