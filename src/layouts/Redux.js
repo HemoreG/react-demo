@@ -1,9 +1,10 @@
 import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
-import {Button, Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Container, Heading, Hero, Section} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import redux from '../assets/images/Redux.png'
+import withoutRedux from '../assets/images/without-redux.gif'
+import withRedux from '../assets/images/with-redux.gif'
 
 function Redux({state, t}) {
 
@@ -30,15 +31,15 @@ function Redux({state, t}) {
             }
             <Container>
                 <Section>
-                    {/* TODO : Add Content */}
-                    <a target="_blank"
-                       rel="noopener noreferrer"
-                       href="https://blog.isquaredsoftware.com/presentations/workshops/redux-fundamentals/ui-layer.html#/">
-                        <Button>
-                            {t('externalRessource')}
-                        </Button>
-                    </a>
-                    <img src={redux} alt="Redux"/>
+                    <Heading>{t('withoutRedux')}</Heading>
+                    <p>{t('withoutReduxSubtitle')}</p>
+                    <img src={withoutRedux} alt="Without redux"/>
+                </Section>
+                <Section>
+                    <Heading>{t('withRedux')}</Heading>
+                    <p>{t('withReduxSubtitle1')}</p>
+                    <p>{t('withReduxSubtitle2')}</p>
+                    <img src={withRedux} alt="With redux"/>
                 </Section>
             </Container>
         </Fragment>

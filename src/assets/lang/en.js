@@ -45,4 +45,9 @@ export const en = {
     "virtualDom": "The virtual DOM",
     "welcome": "Welcome",
     "welcomeQRCode": "Welcome to this demo",
+    "withRedux": "With Redux",
+    "withReduxSubtitle1": "Using Redux may improve performances inside complex application when sharing a global state",
+    "withReduxSubtitle2": "Redux is usefull when your application has to manage a local action history",
+    "withoutRedux": "Without Redux",
+    "withoutReduxSubtitle": "Caution : Redux is not a solution when you use a light application."
 };
