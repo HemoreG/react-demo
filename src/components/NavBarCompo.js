@@ -94,7 +94,10 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
                             </Navbar.Item>
                         </Navbar.Dropdown>
                     </Navbar.Item>
-
+                    <Navbar.Item renderAs={Link} to="/about"
+                                 onClick={() => navigateAndCloseMenu("about")}>
+                        {t('aboutTitle')}
+                    </Navbar.Item>
                 </Navbar.Container>
                 <Navbar.Container position="end">
                     <Navbar.Item onClick={() => toggleHeader()}>

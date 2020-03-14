@@ -9,6 +9,7 @@ const Counter = React.lazy(() => import('./layouts/Counter'));
 const Page404 = React.lazy(() => import('./layouts/Page404'));
 const Redux = React.lazy(() => import('./layouts/Redux'));
 const VirtualDOM = React.lazy(() => import('./layouts/VirtualDOM'));
+const About = React.lazy(() => import('./layouts/About'));
 
 const routes = [
     {
@@ -50,6 +51,11 @@ const routes = [
         path: '/live-counter',
         exact: false,
         main: () => <LiveCounter/>
+    },
+    {
+        path: '/about',
+        exact: false,
+        main: () => <About/>
     },
     {
         path: '/*',

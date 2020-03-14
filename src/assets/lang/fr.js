@@ -1,4 +1,6 @@
 export const fr = {
+    "aboutTitle": "A propos",
+    "aboutSubtitle": "Projet universitaire : Présenter React.js",
     "changeTheme": "Changer le thème",
     "closeHeader": "Cacher l'en-tête",
     "componentDescription1": "Un component peut être : Réutilisable",
@@ -16,6 +18,9 @@ export const fr = {
     "homeGoToDemo": "Apprenons React !",
     "homeSubtitle": "Vous souhaitez connaître React...?",
     "homeSubtitleQRCode": "Scannez ce QR Code !",
+    "inspectThePage": "Inspectez la boîte à TODO",
+    "inspectThePageDescription1": "Ajoutez/supprimez des éléments. Vous pouvez constater que les changements dans le DOM sont réalisés uniquement dans les zones modifiées.",
+    "inspectThePageDescription2": "Cela est mis en place grace à un 'Diffing' entre l'ancienne version et la nouvelle du DOM Virtuel",
     "liveCounterSubtitle": "Créer un compteur partagé en utilisant une websocket",
     "loading": "Chargement...",
     "minus": "Enlever 1",
