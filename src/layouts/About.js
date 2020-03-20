@@ -94,7 +94,7 @@ function About({state, t}) {
                                     </Media>
                                     <Content>
                                         Étudiant en informatique à l’UCBL, j'aime travailler sur des projets d’Art,
-                                        d'Accessibilité ou la Géomatique.</Content>
+                                        d'Accessibilité ou de Géomatique.</Content>
                                 </Card.Content>
                             </Card>
                         </Section>
