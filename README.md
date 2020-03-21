@@ -1,3 +1,6 @@
+![alt text](http://licence-info.univ-lyon1.fr/img/Bandeau-dpt-info-v3.jpg "Bandeau Université Lyon 1 informatique")
+
+
 # Application 
 ## Status du déploiement front
 [![Netlify Status](https://api.netlify.com/api/v1/badges/069e35d6-a64b-4c8f-b5cb-480a29ec3e0b/deploy-status)](https://app.netlify.com/sites/react-demo-m1if/deploys)
