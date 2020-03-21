@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
-import {Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import withoutRedux from '../assets/images/without-redux.gif'
@@ -31,15 +31,19 @@ function Redux({state, t}) {
             }
             <Container>
                 <Section>
-                    <Heading>{t('withoutRedux')}</Heading>
-                    <p>{t('withoutReduxSubtitle')}</p>
-                    <img src={withoutRedux} alt="Without redux"/>
-                </Section>
-                <Section>
-                    <Heading>{t('withRedux')}</Heading>
-                    <p>{t('withReduxSubtitle1')}</p>
-                    <p>{t('withReduxSubtitle2')}</p>
-                    <img src={withRedux} alt="With redux"/>
+                    <Columns>
+                        <Columns.Column>
+                            <Heading>{t('withoutRedux')}</Heading>
+                            <p>{t('withoutReduxSubtitle')}</p>
+                            <img src={withoutRedux} alt="Without redux"/>
+                        </Columns.Column>
+                        <Columns.Column>
+                            <Heading>{t('withRedux')}</Heading>
+                            <p>{t('withReduxSubtitle1')}</p>
+                            <p>{t('withReduxSubtitle2')}</p>
+                            <img src={withRedux} alt="With redux"/>
+                        </Columns.Column>
+                    </Columns>
                 </Section>
             </Container>
         </Fragment>
