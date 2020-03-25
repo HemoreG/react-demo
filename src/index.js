@@ -8,17 +8,22 @@ import {Provider} from "react-redux";
 import * as serviceWorker from './serviceWorker';
 import configureStore, {history} from "./store/configureStore";
 import {connect as wsConnect} from '@giantmachines/redux-websocket';
+import Firebase, {FirebaseContext} from './components/Firebase';
+
 
 const store = configureStore(/* provide initial state if any */);
 
 store.dispatch(wsConnect('wss://ws-counter2.gigalixirapp.com'));
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <App/>
-        </ConnectedRouter>
-    </Provider>
+    <FirebaseContext.Provider value={new Firebase()}>
+
+        <Provider store={store}>
+            <ConnectedRouter history={history}>
+                <App/>
+            </ConnectedRouter>
+        </Provider>
+    </FirebaseContext.Provider>
 
     , document.getElementById('root'));
 

@@ -7,8 +7,9 @@ import reactIcon from "../logo.svg";
 import {Link} from "react-router-dom";
 import {changePath, toggleFollow, toggleHeader} from "../actions/appAction";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import SignOutButton from "./Signout";
 
-function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
+function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t, authUser}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
     const [open, setOpen] = useState(false);
     const [openCounters, setOpenCounters] = useState(true);
@@ -65,7 +66,6 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
                             </Navbar.Item>
                         </Navbar.Dropdown>
                     </Navbar.Item>
-
                     <Navbar.Item dropdown hoverable>
                         <Navbar.Link arrowless={true} onClick={() => setOpenTheme(!openTheme)}>
                             {t('themes')}
@@ -99,11 +99,30 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
                         {t('aboutTitle')}
                     </Navbar.Item>
                 </Navbar.Container>
-                <Navbar.Container position="end">
-                    <Navbar.Item onClick={() => toggleHeader()}>
-                        {t(state.showHeader ? 'closeHeader' : 'openHeader')}
-                    </Navbar.Item>
-                </Navbar.Container>
+                {
+                    authUser ?
+                        (
+                            <Navbar.Container position="end">
+                                <SignOutButton/>
+                                <Navbar.Item onClick={() => toggleHeader()}>
+                                    {t(state.showHeader ? 'closeHeader' : 'openHeader')}
+                                </Navbar.Item>
+                            </Navbar.Container>
+                        ) :
+                        (
+                            <Navbar.Container position="end">
+                                <Navbar.Item renderAs={Link} to="/login">
+                                    {t('login')}
+                                </Navbar.Item>
+                                <Navbar.Item renderAs={Link} to="/register">
+                                    {t('register')}
+                                </Navbar.Item>
+                                <Navbar.Item onClick={() => toggleHeader()}>
+                                    {t(state.showHeader ? 'closeHeader' : 'openHeader')}
+                                </Navbar.Item>
+                            </Navbar.Container>
+                        )
+                }
             </Navbar.Menu>
         </Navbar>
     );

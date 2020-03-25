@@ -10,6 +10,8 @@ const Page404 = React.lazy(() => import('./layouts/Page404'));
 const Redux = React.lazy(() => import('./layouts/Redux'));
 const VirtualDOM = React.lazy(() => import('./layouts/VirtualDOM'));
 const About = React.lazy(() => import('./layouts/About'));
+const Login = React.lazy(() => import('./layouts/Login'));
+const Register = React.lazy(() => import('./layouts/Register'));
 
 const routes = [
     {
@@ -56,6 +58,16 @@ const routes = [
         path: '/about',
         exact: false,
         main: () => <About/>
+    },
+    {
+        path: '/login',
+        exact: false,
+        main: () => <Login/>
+    },
+    {
+        path: '/register',
+        exact: false,
+        main: () => <Register/>
     },
     {
         path: '/*',
