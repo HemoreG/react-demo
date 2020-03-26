@@ -1,21 +1,21 @@
 import React from 'react';
 
-const Home = React.lazy(() => import('./layouts/Home'));
-const Component = React.lazy(() => import('./layouts/Component'));
-const Theme = React.lazy(() => import('./layouts/Theme'));
-const ThemeClass = React.lazy(() => import('./layouts/ThemeClass'));
-const LiveCounter = React.lazy(() => import('./layouts/LiveCounter'));
-const Counter = React.lazy(() => import('./layouts/Counter'));
-const Page404 = React.lazy(() => import('./layouts/Page404'));
-const Redux = React.lazy(() => import('./layouts/Redux'));
-const VirtualDOM = React.lazy(() => import('./layouts/VirtualDOM'));
-const About = React.lazy(() => import('./layouts/About'));
-const Login = React.lazy(() => import('./layouts/Login'));
-const Register = React.lazy(() => import('./layouts/Register'));
-const ResetPassword = React.lazy(() => import('./layouts/ResetPassword'));
-const ChangePassword = React.lazy(() => import('./layouts/ChangePassword'));
-const Account = React.lazy(() => import('./layouts/Account'));
-const Administration = React.lazy(() => import('./layouts/Administration'));
+const Home = React.lazy(() => import('./pages/Commons/Home'));
+const Component = React.lazy(() => import('./pages/Operations/Component'));
+const Theme = React.lazy(() => import('./pages/Theme/Theme'));
+const ThemeClass = React.lazy(() => import('./pages/Theme/ThemeClass'));
+const LiveCounter = React.lazy(() => import('./pages/Counter/LiveCounter'));
+const Counter = React.lazy(() => import('./pages/Counter/Counter'));
+const Page404 = React.lazy(() => import('./pages/Commons/Page404'));
+const Redux = React.lazy(() => import('./pages/Operations/Redux'));
+const VirtualDOM = React.lazy(() => import('./pages/Operations/VirtualDOM'));
+const About = React.lazy(() => import('./pages/Commons/About'));
+const Login = React.lazy(() => import('./pages/User/Login'));
+const Register = React.lazy(() => import('./pages/User/Register'));
+const ResetPassword = React.lazy(() => import('./pages/User/ResetPassword'));
+const ChangePassword = React.lazy(() => import('./pages/User/ChangePassword'));
+const Account = React.lazy(() => import('./pages/User/Account'));
+const Administration = React.lazy(() => import('./pages/User/Administration'));
 
 const routes = [
     {

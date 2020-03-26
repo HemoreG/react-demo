@@ -7,7 +7,7 @@ import reactIcon from "../logo.svg";
 import {Link} from "react-router-dom";
 import {changePath, toggleFollow, toggleHeader} from "../actions/appAction";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import SignOutButton from "./Signout";
+import SignOutButton from "./User/Signout";
 import {AuthUserContext} from './Session';
 
 

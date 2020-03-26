@@ -5,7 +5,7 @@ import 'react-bulma-components/dist/react-bulma-components.min.css';
 import './App.css';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import icons from './fontLibrary';
-import Loading from "./layouts/Loading";
+import Loading from "./pages/Commons/Loading";
 import {connect} from 'react-redux';
 import NavBarCompo from "./components/NavBarCompo";
 import {getState} from "./actions/appAction";
