@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {compose} from 'recompose';
-
-
 import {withFirebase} from '../Firebase';
+import {withTranslation} from "react-i18next";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const INITIAL_STATE = {
     username: '',
@@ -54,6 +54,7 @@ class SignUpFormBase extends Component {
             passwordTwo,
             error,
         } = this.state;
+        const {t} = this.props;
 
         const isInvalid =
             passwordOne !== passwordTwo ||
@@ -63,50 +64,89 @@ class SignUpFormBase extends Component {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <input
-                    name="username"
-                    value={username}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Full Name"
-                />
-                <input
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Email Address"
-                />
-                <input
-                    name="passwordOne"
-                    value={passwordOne}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Password"
-                />
-                <input
-                    name="passwordTwo"
-                    value={passwordTwo}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Confirm Password"
-                />
-                <button disabled={isInvalid} type="submit">Sign Up</button>
+                <div className="field">
+                    <p className="control has-icons-left">
+                        <input
+                            name="username"
+                            className="input"
+                            value={username}
+                            onChange={this.onChange}
+                            type="text"
+                            placeholder="Full Name"
+                        />
+                        <span className="icon is-small is-left">
+                          <FontAwesomeIcon icon="user"/>
+                        </span>
+                    </p>
+                </div>
+                <div className="field">
+                    <p className="control has-icons-left">
+                        <input
+                            name="email"
+                            className="input"
+                            value={email}
+                            onChange={this.onChange}
+                            type="email"
+                            placeholder="Email"
+                        />
+                        <span className="icon is-small is-left">
+                          <FontAwesomeIcon icon="envelope"/>
+                        </span>
+                    </p>
+                </div>
+                <div className="field">
+                    <p className="control has-icons-left">
+                        <input
+                            name="passwordOne"
+                            value={passwordOne}
+                            className="input"
+                            onChange={this.onChange}
+                            type="password"
+                            placeholder="Password"
+                        />
+                        <span className="icon is-small is-left">
+                      <FontAwesomeIcon icon="lock"/>
+                    </span>
+                    </p>
+                </div>
+                <div className="field">
+                    <p className="control has-icons-left">
+                        <input
+                            name="passwordTwo"
+                            value={passwordTwo}
+                            className="input"
+                            onChange={this.onChange}
+                            type="password"
+                            placeholder="Confirm Password"
+                        />
+                        <span className="icon is-small is-left">
+                      <FontAwesomeIcon icon="lock"/>
+                    </span>
+                    </p>
+                </div>
+                <div className="field">
+                    <p className="control">
+                        <button className="button is-primary" disabled={isInvalid} type="submit">{t('signUp')}</button>
+                    </p>
+                </div>
                 {error && <p>{error.message}</p>}
             </form>
         );
     }
 }
 
-const SignUpLink = () => (
+const SignUpLinkUntranslated = ({t}) => (
     <p>
-        Don't have an account? <Link to="register">Sign Up</Link>
+        {t('dontHaveAnAccount')} <Link to="register">{t('signUp')}</Link>
     </p>
 );
 
 const SignUpForm = compose(
     withRouter,
     withFirebase,
+    withTranslation(),
 )(SignUpFormBase);
 
+
+const SignUpLink = withTranslation()(SignUpLinkUntranslated);
 export {SignUpForm, SignUpLink};

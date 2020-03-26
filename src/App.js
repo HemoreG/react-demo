@@ -2,7 +2,7 @@ import React, {Suspense, useEffect} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import routes from './routes';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
-import './App.css';
+import './App.scss';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import icons from './fontLibrary';
 import Loading from "./pages/Commons/Loading";

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {withFirebase} from '../../Firebase';
+import {withTranslation} from "react-i18next";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const INITIAL_STATE = {
     email: '',
@@ -30,30 +32,45 @@ class PasswordForgetFormBase extends Component {
     };
 
     render() {
+        const {t} = this.props;
         const {email, error} = this.state;
         const isInvalid = email === '';
         return (
             <form onSubmit={this.onSubmit}>
-                <input
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Email Address"
-                />
-                <button disabled={isInvalid} type="submit">
-                    Reset My Password
-                </button>
+                <div className="field">
+                    <p className="control has-icons-left">
+                        <input
+                            name="email"
+                            className="input"
+                            value={this.state.email}
+                            onChange={this.onChange}
+                            type="email"
+                            placeholder="Email"
+                        />
+                        <span className="icon is-small is-left">
+                          <FontAwesomeIcon icon="envelope"/>
+                        </span>
+                    </p>
+                </div>
+                <div className="field">
+                    <p className="control">
+                        <button className="button is-primary" disabled={isInvalid} type="submit">
+                            {t('resetMyPassword')}
+                        </button>
+                    </p>
+                </div>
+
                 {error && <p>{error.message}</p>}
             </form>
         );
     }
 }
 
-const PasswordForgetLink = () => (
+const PasswordForgetLinkUntranslated = ({t}) => (
     <p>
-        <Link to="/resetPassword">Forgot Password?</Link>
+        <Link to="/resetPassword">{t('forgotPassword')}</Link>
     </p>
 );
-const PasswordForgetForm = withFirebase(PasswordForgetFormBase);
+const PasswordForgetLink = withTranslation()(PasswordForgetLinkUntranslated);
+const PasswordForgetForm = withFirebase(withTranslation()(PasswordForgetFormBase));
 export {PasswordForgetForm, PasswordForgetLink};

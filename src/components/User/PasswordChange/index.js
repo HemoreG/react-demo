@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {withFirebase} from '../../Firebase';
+import {withTranslation} from "react-i18next";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {withAuthorization} from "../../Session";
 
 const INITIAL_STATE = {
     passwordOne: '',
@@ -30,32 +32,56 @@ class PasswordChangeForm extends Component {
     };
 
     render() {
+        const {t} = this.props;
         const {passwordOne, passwordTwo, error} = this.state;
         const isInvalid =
             passwordOne !== passwordTwo || passwordOne === '';
         return (
             <form onSubmit={this.onSubmit}>
-                <input
-                    name="passwordOne"
-                    value={passwordOne}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="New Password"
-                />
-                <input
-                    name="passwordTwo"
-                    value={passwordTwo}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Confirm New Password"
-                />
-                <button disabled={isInvalid} type="submit">
-                    Reset My Password
-                </button>
+
+                <div className="field">
+                    <p className="control has-icons-left">
+                        <input
+                            name="passwordOne"
+                            value={passwordOne}
+                            className="input"
+                            onChange={this.onChange}
+                            type="password"
+                            placeholder={t('password')}
+                        />
+                        <span className="icon is-small is-left">
+                      <FontAwesomeIcon icon="lock"/>
+                    </span>
+                    </p>
+                </div>
+                <div className="field">
+                    <p className="control has-icons-left">
+                        <input
+                            name="passwordTwo"
+                            value={passwordTwo}
+                            className="input"
+                            onChange={this.onChange}
+                            type="password"
+                            placeholder={t('confirmPassword')}
+                        />
+                        <span className="icon is-small is-left">
+                      <FontAwesomeIcon icon="lock"/>
+                    </span>
+                    </p>
+                </div>
+                <div className="field">
+                    <p className="control">
+                        <button className="button is-primary" disabled={isInvalid} type="submit">
+                            {t('resetMyPassword')}
+                        </button>
+                    </p>
+                </div>
                 {error && <p>{error.message}</p>}
             </form>
         );
     }
 }
 
-export default withFirebase(PasswordChangeForm);
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(withTranslation()(PasswordChangeForm));

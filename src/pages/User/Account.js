@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
-import {Container, Heading, Hero} from 'react-bulma-components';
+import {Container, Heading, Hero, Section} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {PasswordForgetForm} from "../../components/User/PasswordForget";
@@ -32,9 +32,15 @@ function Account({state, t}) {
                 <Fragment>
                     {Header}
                     <Container>
-                        <h1>Account: {authUser.email}</h1>
-                        <PasswordForgetForm/>
-                        <PasswordChangeForm/>
+                        <Section>
+                            <Heading>{authUser.email}</Heading>
+                            <p>{t('resetPassword')}</p>
+                            <PasswordForgetForm/>
+                        </Section>
+                        <Section>
+                            <p>{t('changeYourPassword')}</p>
+                            <PasswordChangeForm/>
+                        </Section>
                     </Container>
                 </Fragment>
             )}

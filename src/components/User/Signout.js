@@ -1,11 +1,12 @@
 import React from 'react';
 import {withFirebase} from '../Firebase';
 import {Navbar} from "react-bulma-components";
+import {withTranslation} from "react-i18next";
 
-const SignOutButton = ({firebase}) => (
+const SignOutButton = ({t, firebase}) => (
     <Navbar.Item onClick={() => firebase.doSignOut()}>
-        Sign out
+        {t('signOut')}
     </Navbar.Item>
 );
 
-export default withFirebase(SignOutButton);
+export default withTranslation()(withFirebase(SignOutButton));

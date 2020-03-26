@@ -17,6 +17,7 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
     const [openCounters, setOpenCounters] = useState(true);
     const [openTheme, setOpenTheme] = useState(true);
     const [openOperation, setOpenOperation] = useState(true);
+    const [openUsers, setOpenUsers] = useState(true);
 
     const navigateAndCloseMenu = (path) => {
         setOpen(false);
@@ -101,32 +102,43 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
                         {t('aboutTitle')}
                     </Navbar.Item>
                 </Navbar.Container>
-                <AuthUserContext.Consumer>
-                    {
-                        authUser => authUser ?
-                            (
-                                <Navbar.Container position="end">
-                                    <SignOutButton/>
-                                    <Navbar.Item renderAs={Link} to="/administration">
-                                        {t('administration')}
+                <Navbar.Container position="end">
+                    <AuthUserContext.Consumer>
+                        {
+                            authUser => authUser ?
+                                (
+                                    <Navbar.Item dropdown hoverable>
+                                        <Navbar.Link arrowless={true} onClick={() => setOpenUsers(!openUsers)}>
+                                            <FontAwesomeIcon icon="user"/>
+                                        </Navbar.Link>
+                                        <Navbar.Dropdown hidden={!openUsers}>
+                                            <AuthUserContext.Consumer>
+                                                {
+                                                    authUser => authUser ? ( // TODO : Only for ADMIN roles
+                                                        <Navbar.Item renderAs={Link} to="/administration">
+                                                            {t('administration')}
+                                                        </Navbar.Item>
+                                                    ) : null
+                                                }
+                                            </AuthUserContext.Consumer>
+                                            <Navbar.Item renderAs={Link} to="/account">
+                                                {t('account')}
+                                            </Navbar.Item>
+                                            <SignOutButton/>
+                                        </Navbar.Dropdown>
                                     </Navbar.Item>
-                                    <Navbar.Item onClick={() => toggleHeader()}>
-                                        {t(state.showHeader ? 'closeHeader' : 'openHeader')}
-                                    </Navbar.Item>
-                                </Navbar.Container>
-                            ) :
-                            (
-                                <Navbar.Container position="end">
+                                ) :
+                                (
                                     <Navbar.Item renderAs={Link} to="/login">
                                         {t('login')}
                                     </Navbar.Item>
-                                    <Navbar.Item onClick={() => toggleHeader()}>
-                                        {t(state.showHeader ? 'closeHeader' : 'openHeader')}
-                                    </Navbar.Item>
-                                </Navbar.Container>
-                            )
-                    }
-                </AuthUserContext.Consumer>
+                                )
+                        }
+                    </AuthUserContext.Consumer>
+                    <Navbar.Item onClick={() => toggleHeader()}>
+                        {t(state.showHeader ? 'closeHeader' : 'openHeader')}
+                    </Navbar.Item>
+                </Navbar.Container>
             </Navbar.Menu>
         </Navbar>
     );
