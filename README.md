@@ -16,6 +16,16 @@ L'application a été créé à partir de [Create React App](https://github.com/
 #### Bulma.io
 Cette application utilise [les composants Bulma.io](https://github.com/couds/react-bulma-components)!
 
+#### Firebase + React Context
+Le contexte React nous permet ici de gérer efficacement le compte Firebase 
+##### Gestion de l'authentification
+###### Basée sur la connexion
+`const condition = authUser => !!authUser;`
+###### Basée sur un rôle
+`const condition = authUser => authUser.role === 'USER';`
+###### Basée sur une permission
+`const condition = authUser => authUser.permissions.canEditAccount;`
+
 ## Commandes
 ### `npm start`
 Lance l'application en mode développement.<br />

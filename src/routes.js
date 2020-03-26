@@ -12,6 +12,10 @@ const VirtualDOM = React.lazy(() => import('./layouts/VirtualDOM'));
 const About = React.lazy(() => import('./layouts/About'));
 const Login = React.lazy(() => import('./layouts/Login'));
 const Register = React.lazy(() => import('./layouts/Register'));
+const ResetPassword = React.lazy(() => import('./layouts/ResetPassword'));
+const ChangePassword = React.lazy(() => import('./layouts/ChangePassword'));
+const Account = React.lazy(() => import('./layouts/Account'));
+const Administration = React.lazy(() => import('./layouts/Administration'));
 
 const routes = [
     {
@@ -68,6 +72,26 @@ const routes = [
         path: '/register',
         exact: false,
         main: () => <Register/>
+    },
+    {
+        path: '/resetPassword',
+        exact: false,
+        main: () => <ResetPassword/>
+    },
+    {
+        path: '/changePassword',
+        exact: false,
+        main: () => <ChangePassword/>
+    },
+    {
+        path: '/account',
+        exact: false,
+        main: () => <Account/>
+    },
+    {
+        path: '/administration',
+        exact: false,
+        main: () => <Administration/>
     },
     {
         path: '/*',

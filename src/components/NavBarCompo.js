@@ -8,8 +8,10 @@ import {Link} from "react-router-dom";
 import {changePath, toggleFollow, toggleHeader} from "../actions/appAction";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import SignOutButton from "./Signout";
+import {AuthUserContext} from './Session';
 
-function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t, authUser}) {
+
+function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
     const [open, setOpen] = useState(false);
     const [openCounters, setOpenCounters] = useState(true);
@@ -99,30 +101,32 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t, authUser
                         {t('aboutTitle')}
                     </Navbar.Item>
                 </Navbar.Container>
-                {
-                    authUser ?
-                        (
-                            <Navbar.Container position="end">
-                                <SignOutButton/>
-                                <Navbar.Item onClick={() => toggleHeader()}>
-                                    {t(state.showHeader ? 'closeHeader' : 'openHeader')}
-                                </Navbar.Item>
-                            </Navbar.Container>
-                        ) :
-                        (
-                            <Navbar.Container position="end">
-                                <Navbar.Item renderAs={Link} to="/login">
-                                    {t('login')}
-                                </Navbar.Item>
-                                <Navbar.Item renderAs={Link} to="/register">
-                                    {t('register')}
-                                </Navbar.Item>
-                                <Navbar.Item onClick={() => toggleHeader()}>
-                                    {t(state.showHeader ? 'closeHeader' : 'openHeader')}
-                                </Navbar.Item>
-                            </Navbar.Container>
-                        )
-                }
+                <AuthUserContext.Consumer>
+                    {
+                        authUser => authUser ?
+                            (
+                                <Navbar.Container position="end">
+                                    <SignOutButton/>
+                                    <Navbar.Item renderAs={Link} to="/administration">
+                                        {t('administration')}
+                                    </Navbar.Item>
+                                    <Navbar.Item onClick={() => toggleHeader()}>
+                                        {t(state.showHeader ? 'closeHeader' : 'openHeader')}
+                                    </Navbar.Item>
+                                </Navbar.Container>
+                            ) :
+                            (
+                                <Navbar.Container position="end">
+                                    <Navbar.Item renderAs={Link} to="/login">
+                                        {t('login')}
+                                    </Navbar.Item>
+                                    <Navbar.Item onClick={() => toggleHeader()}>
+                                        {t(state.showHeader ? 'closeHeader' : 'openHeader')}
+                                    </Navbar.Item>
+                                </Navbar.Container>
+                            )
+                    }
+                </AuthUserContext.Consumer>
             </Navbar.Menu>
         </Navbar>
     );

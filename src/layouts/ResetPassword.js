@@ -3,11 +3,11 @@ import {withTranslation} from 'react-i18next';
 import {Container, Heading, Hero} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import SignInPage from "../components/Signin";
+import PasswordForgetPage from "../components/PasswordForget";
 
-function Login({state, t}) {
+function ResetPassword({state, t}) {
 
-    if (state.isFollowing && state.currentPage !== 'login') {
+    if (state.isFollowing && state.currentPage !== 'resetPassword') {
         return <Redirect to={state.currentPage}/>;
     }
 
@@ -18,9 +18,9 @@ function Login({state, t}) {
                     <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
                         <Hero.Body>
                             <Container>
-                                <Heading>{t('login')}</Heading>
+                                <Heading>{t('resetPassword')}</Heading>
                                 <Heading subtitle size={3}>
-                                    {t('loginToGetToken')}
+                                    {t('resetYourPassword')}
                                 </Heading>
                             </Container>
                         </Hero.Body>
@@ -28,7 +28,7 @@ function Login({state, t}) {
                 ) : null
             }
             <Container>
-                <SignInPage/>
+                <PasswordForgetPage/>
             </Container>
         </Fragment>
     );
@@ -38,4 +38,4 @@ const mapStateToProps = (state) => ({
     state: state.rootReducers
 });
 
-export default connect(mapStateToProps)(withTranslation()(Login));
+export default connect(mapStateToProps)(withTranslation()(ResetPassword));
