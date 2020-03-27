@@ -9,8 +9,9 @@ const withAuthorization = condition => Component => {
         componentDidMount() {
             this.listener = this.props.firebase.onAuthUserListener(
                 authUser => {
+                    const pathname = this.props.history.location.pathname;
                     if (!condition(authUser)) {
-                        this.props.history.push("/login");
+                        this.props.history.push(pathname === '/login' ? "/" : "/login");
                     }
                 },
                 () => this.props.history.push("/login"),

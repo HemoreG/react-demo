@@ -4,6 +4,7 @@ import {Container, Heading, Hero, Section} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import SignInPage from "../../components/User/Signin";
+import {withAuthorization} from "../../components/Session";
 
 function Login({state, t}) {
 
@@ -40,4 +41,6 @@ const mapStateToProps = (state) => ({
     state: state.rootReducers
 });
 
-export default connect(mapStateToProps)(withTranslation()(Login));
+const condition = authUser => !authUser;
+
+export default withAuthorization(condition)(connect(mapStateToProps)(withTranslation()(Login)));
