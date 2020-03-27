@@ -4,6 +4,7 @@ import {compose} from 'recompose';
 import {withFirebase} from '../Firebase';
 import {withTranslation} from "react-i18next";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import * as ROLES from '../../assets/constants/roles';
 
 const INITIAL_STATE = {
     username: '',
@@ -30,6 +31,7 @@ class SignUpFormBase extends Component {
                     .set({
                         username,
                         email,
+                        roles: ROLES.USER
                     });
             })
             .then(() => {

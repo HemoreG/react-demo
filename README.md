@@ -22,8 +22,8 @@ Le contexte React nous permet ici de gérer efficacement le compte Firebase
 ###### Basée sur la connexion
 `const condition = authUser => !!authUser;`
 ###### Basée sur un rôle
-`const condition = authUser => authUser.role === 'USER';`
-###### Basée sur une permission
+`const condition = authUser => authUser.role === ROLES.nomDuRole;`
+###### Basée sur une permission (non géré pour l'instant)
 `const condition = authUser => authUser.permissions.canEditAccount;`
 
 ## Commandes

@@ -29,8 +29,8 @@ const jerome = {
 };
 
 const reactRepo = {
-    name: "Repository Operations",
-    description: "Demo d'utilisation de la librairie Operations.js.",
+    name: "Repository React",
+    description: "Demo d'utilisation de la librairie React.js.",
     link: "https://github.com/LinkJerome/react-demo",
     at: "@LinkJerome/react-demo",
     img: reactIcon

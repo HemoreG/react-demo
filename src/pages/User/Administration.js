@@ -4,7 +4,7 @@ import {changeTheme} from "../../actions/appAction";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {withAuthorization} from "../../components/Session";
-
+import * as ROLES from '../../assets/constants/roles';
 
 class Administration extends React.Component {
     constructor(props) {
@@ -80,6 +80,6 @@ const mapStateToProps = (state) => ({
     state: state.rootReducers
 });
 
-const condition = authUser => !!authUser;
+const condition = authUser => authUser && authUser.roles === ROLES.ADMIN;
 
 export default withAuthorization(condition)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Administration)));

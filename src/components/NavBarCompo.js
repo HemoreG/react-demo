@@ -9,6 +9,7 @@ import {changePath, toggleFollow, toggleHeader} from "../actions/appAction";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import SignOutButton from "./User/Signout";
 import {AuthUserContext} from './Session';
+import * as ROLES from '../assets/constants/roles';
 
 
 function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
@@ -112,15 +113,13 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
                                             <FontAwesomeIcon icon="user"/>
                                         </Navbar.Link>
                                         <Navbar.Dropdown hidden={!openUsers}>
-                                            <AuthUserContext.Consumer>
-                                                {
-                                                    authUser => authUser ? ( // TODO : Only for ADMIN roles
-                                                        <Navbar.Item renderAs={Link} to="/administration">
-                                                            {t('administration')}
-                                                        </Navbar.Item>
-                                                    ) : null
-                                                }
-                                            </AuthUserContext.Consumer>
+                                            {
+                                                authUser.roles === ROLES.ADMIN && (
+                                                    <Navbar.Item renderAs={Link} to="/administration">
+                                                        {t('administration')}
+                                                    </Navbar.Item>
+                                                )
+                                            }
                                             <Navbar.Item renderAs={Link} to="/account">
                                                 {t('account')}
                                             </Navbar.Item>

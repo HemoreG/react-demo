@@ -1,6 +1,2 @@
-const ROLES = {
-    ADMIN: 'ADMIN',
-    USER: 'USER',
-};
-
-export default ROLES;
+export const ADMIN = 'ADMIN';
+export const USER = 'USER';
