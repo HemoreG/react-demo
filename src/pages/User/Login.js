@@ -1,12 +1,12 @@
 import React, {Fragment} from 'react';
-import {withTranslation} from 'react-i18next';
-import {Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Container, Section} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import SignInPage from "../../components/User/Signin";
 import {withAuthorization} from "../../components/Session";
+import CustomHeader from "../../components/CustomHeader";
 
-function Login({state, t}) {
+function Login({state}) {
 
     if (state.isFollowing && state.currentPage !== 'login') {
         return <Redirect to={state.currentPage}/>;
@@ -14,20 +14,7 @@ function Login({state, t}) {
 
     return (
         <Fragment>
-            {
-                state.showHeader ? (
-                    <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
-                        <Hero.Body>
-                            <Container>
-                                <Heading>{t('login')}</Heading>
-                                <Heading subtitle size={3}>
-                                    {t('loginToGetToken')}
-                                </Heading>
-                            </Container>
-                        </Hero.Body>
-                    </Hero>
-                ) : null
-            }
+            <CustomHeader title={'login'} subtitle={'loginToGetToken'}/>
             <Container>
                 <Section>
                     <SignInPage/>
@@ -43,4 +30,4 @@ const mapStateToProps = (state) => ({
 
 const condition = authUser => !authUser;
 
-export default withAuthorization(condition)(connect(mapStateToProps)(withTranslation()(Login)));
+export default withAuthorization(condition)(connect(mapStateToProps)(Login));

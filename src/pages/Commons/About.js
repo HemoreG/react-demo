@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react';
-import {withTranslation} from 'react-i18next';
-import {Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Columns, Container, Section} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import infos from '../../assets/examples/informations';
 
 import CustomCard from "../../components/CustomCard";
+import CustomHeader from "../../components/CustomHeader";
 
-function About({state, t}) {
+function About({state}) {
 
     if (state.isFollowing && state.currentPage !== 'theme') {
         return <Redirect to={state.currentPage}/>;
@@ -15,20 +15,7 @@ function About({state, t}) {
 
     return (
         <Fragment>
-            {
-                state.showHeader ? (
-                    <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
-                        <Hero.Body>
-                            <Container>
-                                <Heading>{t('aboutTitle')}</Heading>
-                                <Heading subtitle size={3}>
-                                    {t('aboutSubtitle')}
-                                </Heading>
-                            </Container>
-                        </Hero.Body>
-                    </Hero>
-                ) : null
-            }
+            <CustomHeader title={'aboutTitle'} subtitle={'aboutSubtitle'}/>
             <Container>
                 <Columns>
                     <Columns.Column size={4}>
@@ -54,4 +41,4 @@ const mapStateToProps = (state) => ({
     state: state.rootReducers
 });
 
-export default connect(mapStateToProps)(withTranslation()(About));
+export default connect(mapStateToProps)(About);

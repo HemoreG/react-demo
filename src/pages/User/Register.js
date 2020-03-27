@@ -1,11 +1,11 @@
 import React, {Fragment} from 'react';
-import {withTranslation} from 'react-i18next';
-import {Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Container, Section} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {SignUpForm} from "../../components/User/SignupForm";
+import CustomHeader from "../../components/CustomHeader";
 
-function Register({state, t}) {
+function Register({state}) {
 
     if (state.isFollowing && state.currentPage !== 'theme') {
         return <Redirect to={state.currentPage}/>;
@@ -13,20 +13,7 @@ function Register({state, t}) {
 
     return (
         <Fragment>
-            {
-                state.showHeader ? (
-                    <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
-                        <Hero.Body>
-                            <Container>
-                                <Heading>{t('register')}</Heading>
-                                <Heading subtitle size={3}>
-                                    {t('registerToGetToken')}
-                                </Heading>
-                            </Container>
-                        </Hero.Body>
-                    </Hero>
-                ) : null
-            }
+            <CustomHeader title={'register'} subtitle={'registerToGetToken'}/>
             <Container>
                 <Section>
                     <SignUpForm/>
@@ -40,4 +27,4 @@ const mapStateToProps = (state) => ({
     state: state.rootReducers
 });
 
-export default connect(mapStateToProps)(withTranslation()(Register));
+export default connect(mapStateToProps)(Register);

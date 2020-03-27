@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import {withTranslation} from 'react-i18next';
-import {Button, Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Button, Columns, Container, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import codeTheme from '../../assets/examples/codeTheme.txt';
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
@@ -8,6 +8,7 @@ import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import {changeTheme} from "../../actions/appAction";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
+import CustomHeader from "../../components/CustomHeader";
 
 function Theme({changeTheme, state, t}) {
 
@@ -29,20 +30,7 @@ function Theme({changeTheme, state, t}) {
 
     return (
         <Fragment>
-            {
-                state.showHeader ? (
-                    <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
-                        <Hero.Body>
-                            <Container>
-                                <Heading>{t('reactState')}</Heading>
-                                <Heading subtitle size={3}>
-                                    {t('themeSubtitle')}
-                                </Heading>
-                            </Container>
-                        </Hero.Body>
-                    </Hero>
-                ) : null
-            }
+            <CustomHeader title={'reactState'} subtitle={'themeSubtitle'}/>
             <Container>
                 <Columns>
                     <Columns.Column size={3}>

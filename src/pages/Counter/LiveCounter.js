@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
-import {Button, Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Button, Columns, Container, Heading, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {decrement, increment, resetState} from "../../actions/appAction";
 import {connect} from "react-redux";
@@ -8,6 +8,7 @@ import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import liveCodeCounter from "../../assets/examples/liveCodeCounter.txt";
 import {Redirect} from "react-router-dom";
+import CustomHeader from "../../components/CustomHeader";
 
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
@@ -55,20 +56,7 @@ class LiveCounter extends React.Component {
         }
         return (
             <Fragment>
-                {
-                    state.showHeader ? (
-                        <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
-                            <Hero.Body>
-                                <Container>
-                                    <Heading>{t('reactLiveCounter')}</Heading>
-                                    <Heading subtitle size={3}>
-                                        {t('liveCounterSubtitle')}
-                                    </Heading>
-                                </Container>
-                            </Hero.Body>
-                        </Hero>
-                    ) : null
-                }
+                <CustomHeader title={'reactLiveCounter'} subtitle={'liveCounterSubtitle'}/>
                 <Container>
                     <Columns>
                         <Columns.Column size={4}>

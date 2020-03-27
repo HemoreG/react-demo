@@ -1,11 +1,11 @@
 import React, {Fragment} from 'react';
-import {withTranslation} from 'react-i18next';
-import {Container, Heading, Hero} from 'react-bulma-components';
+import {Container} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import PasswordChangeForm from "../../components/User/PasswordChange";
+import CustomHeader from "../../components/CustomHeader";
 
-function ChangePassword({state, t}) {
+function ChangePassword({state}) {
 
     if (state.isFollowing && state.currentPage !== 'changePassword') {
         return <Redirect to={state.currentPage}/>;
@@ -13,20 +13,7 @@ function ChangePassword({state, t}) {
 
     return (
         <Fragment>
-            {
-                state.showHeader ? (
-                    <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
-                        <Hero.Body>
-                            <Container>
-                                <Heading>{t('changePassword')}</Heading>
-                                <Heading subtitle size={3}>
-                                    {t('changeYourPassword')}
-                                </Heading>
-                            </Container>
-                        </Hero.Body>
-                    </Hero>
-                ) : null
-            }
+            <CustomHeader title={'changePassword'} subtitle={'changeYourPassword'}/>
             <Container>
                 <PasswordChangeForm/>
             </Container>
@@ -38,4 +25,4 @@ const mapStateToProps = (state) => ({
     state: state.rootReducers
 });
 
-export default connect(mapStateToProps)(withTranslation()(ChangePassword));
+export default connect(mapStateToProps)(ChangePassword);

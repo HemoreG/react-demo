@@ -1,11 +1,11 @@
 import React, {Fragment} from 'react';
-import {withTranslation} from 'react-i18next';
-import {Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Container, Section} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {PasswordForgetForm} from "../../components/User/PasswordForget";
+import CustomHeader from "../../components/CustomHeader";
 
-function ResetPassword({state, t}) {
+function ResetPassword({state}) {
 
     if (state.isFollowing && state.currentPage !== 'resetPassword') {
         return <Redirect to={state.currentPage}/>;
@@ -13,20 +13,7 @@ function ResetPassword({state, t}) {
 
     return (
         <Fragment>
-            {
-                state.showHeader ? (
-                    <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
-                        <Hero.Body>
-                            <Container>
-                                <Heading>{t('resetPassword')}</Heading>
-                                <Heading subtitle size={3}>
-                                    {t('resetYourPassword')}
-                                </Heading>
-                            </Container>
-                        </Hero.Body>
-                    </Hero>
-                ) : null
-            }
+            <CustomHeader title={'resetPassword'} subtitle={'resetYourPassword'}/>
             <Container>
                 <Section>
                     <PasswordForgetForm/>
@@ -40,4 +27,4 @@ const mapStateToProps = (state) => ({
     state: state.rootReducers
 });
 
-export default connect(mapStateToProps)(withTranslation()(ResetPassword));
+export default connect(mapStateToProps)(ResetPassword);

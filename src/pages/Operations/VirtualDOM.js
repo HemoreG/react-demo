@@ -1,10 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
-import {Box, Columns, Container, Heading, Hero, List, Section} from 'react-bulma-components';
+import {Box, Columns, Container, Heading, List, Section} from 'react-bulma-components';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import AppList from "../../components/Operations/AppList";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import CustomHeader from "../../components/CustomHeader";
 
 const customForm = {
     marginTop: '1.5rem'
@@ -29,7 +30,7 @@ class VirtualDOM extends Component {
             this.setState({
                 term: '',
                 items: [...this.state.items, this.state.term]
-            });   
+            });
         }
     };
 
@@ -52,20 +53,7 @@ class VirtualDOM extends Component {
 
         return (
             <Fragment>
-                {
-                    state.showHeader ? (
-                        <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
-                            <Hero.Body>
-                                <Container>
-                                    <Heading>{t('virtualDom')}</Heading>
-                                    <Heading subtitle size={3}>
-                                        {t('reactVirtualDomSubtitle')}
-                                    </Heading>
-                                </Container>
-                            </Hero.Body>
-                        </Hero>
-                    ) : null
-                }
+                <CustomHeader title={'virtualDom'} subtitle={'reactVirtualDomSubtitle'}/>
                 <Container>
                     <Columns>
                         <Columns.Column size={4}>
@@ -76,7 +64,8 @@ class VirtualDOM extends Component {
                                 <form style={customForm} onSubmit={this.onSubmit}>
                                     <div className="field has-addons">
                                         <div className="control">
-                                            <input className="input" required value={this.state.term} onChange={this.onChange}/>
+                                            <input className="input" required value={this.state.term}
+                                                   onChange={this.onChange}/>
                                         </div>
                                         <div className="control">
                                             <button className="button">

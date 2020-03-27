@@ -1,12 +1,13 @@
 import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
-import {Button, Columns, Container, Heading, Hero, Section} from 'react-bulma-components';
+import {Button, Columns, Container, Heading, Section} from 'react-bulma-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {atomDark, prism} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import codeCounter from "../../assets/examples/codeCounter.txt";
 import {Redirect} from "react-router-dom";
+import CustomHeader from "../../components/CustomHeader";
 
 const customSection = {
     padding: '1.5rem 1.5rem 1.5rem 1.5rem',
@@ -60,20 +61,7 @@ class Counter extends React.Component {
         }
         return (
             <Fragment>
-                {
-                    state.showHeader ? (
-                        <Hero color={state.currentTheme === 'info' ? 'info' : 'dark'}>
-                            <Hero.Body>
-                                <Container>
-                                    <Heading>{t('reactCounter')}</Heading>
-                                    <Heading subtitle size={3}>
-                                        {t('counterSubtitle')}
-                                    </Heading>
-                                </Container>
-                            </Hero.Body>
-                        </Hero>
-                    ) : null
-                }
+                <CustomHeader title={'reactCounter'} subtitle={'counterSubtitle'}/>
                 <Container>
                     <Columns>
                         <Columns.Column size={4}>
