@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {withTranslation} from 'react-i18next';
 import {changeTheme} from "../../actions/appAction";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {withAuthorization} from "../../components/Session";
 import * as ROLES from '../../assets/constants/roles';
+import CustomHeader from "../../components/CustomHeader";
+import {Box, Columns, Container, List, Section} from "react-bulma-components";
+import UserList from "../../components/User/UserList";
+import {CreateUserForm} from "../../components/User/CreateUserForm";
 
 class Administration extends React.Component {
     constructor(props) {
@@ -36,7 +40,7 @@ class Administration extends React.Component {
     }
 
     render() {
-        const {state} = this.props;
+        const {state, t} = this.props;
         const {users, loading} = this.state;
 
         if (state.isFollowing && state.currentPage !== 'administration') {
@@ -44,33 +48,29 @@ class Administration extends React.Component {
         }
 
         return (
-            <div>
-                <h1>Admin</h1>
-                {loading && <div>Loading ...</div>}
-
-                <UserList users={users}/>
-            </div>
+            <Fragment>
+                <CustomHeader title={'administration'} subtitle={'manageUsers'}/>
+                <Container>
+                    <Section>
+                        <Columns>
+                            <Columns.Column size={8}>
+                                <Box>
+                                    <List hoverable>
+                                        {loading && <p>{t('loading')}</p>}
+                                        <UserList users={users}/>
+                                    </List>
+                                </Box>
+                            </Columns.Column>
+                            <Columns.Column size={4}>
+                                <CreateUserForm/>
+                            </Columns.Column>
+                        </Columns>
+                    </Section>
+                </Container>
+            </Fragment>
         );
     }
 }
-
-const UserList = ({users}) => (
-    <ul>
-        {users.map(user => (
-            <li key={user.uid}>
-        <span>
-          <strong>ID:</strong> {user.uid}
-        </span>
-                <span>
-          <strong>E-Mail:</strong> {user.email}
-        </span>
-                <span>
-          <strong>Username:</strong> {user.username}
-        </span>
-            </li>
-        ))}
-    </ul>
-);
 
 const mapDispatchToProps = dispatch => ({
     changeTheme: () => dispatch(changeTheme()),

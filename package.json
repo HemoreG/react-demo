@@ -1,5 +1,6 @@
 {
   "name": "react-demo",
+  "description": "Demo of React.js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
