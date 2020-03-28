@@ -6,6 +6,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {changePath, changeTheme, resetState} from "../../actions/appAction";
 import qrCode from '../../assets/images/qrcode.svg'
 import {Redirect} from "react-router-dom";
+import {AuthUserContext} from "../../components/Session";
+import * as ROLES from '../../assets/constants/roles';
 
 function Home({props, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
@@ -36,20 +38,19 @@ function Home({props, state, t}) {
                         <Heading subtitle size={3}>
                             {t('homeSubtitle')}
                         </Heading>
-                        <Section style={sectionStyle}>
-                            <Button.Group>
-                                <Button onClick={() => props.changeTheme()}>
-                                    <span className="icon">
-                                        <FontAwesomeIcon icon="lightbulb"/>
-                                    </span>
-                                </Button>
-                                <Button className="is-hidden-touch" onClick={() => resetEverything()}>
-                                    <span className="icon">
-                                        <FontAwesomeIcon icon="user-shield"/>
-                                    </span>
-                                </Button>
-                            </Button.Group>
-                        </Section>
+                        <AuthUserContext.Consumer>
+                            {
+                                authUser => !!authUser && authUser.roles === ROLES.ADMIN ? (
+                                    <Section style={sectionStyle}>
+                                        <Button className="is-hidden-touch" onClick={() => resetEverything()}>
+                                            <span className="icon">
+                                                <FontAwesomeIcon icon="user-shield"/>
+                                            </span>
+                                        </Button>
+                                    </Section>
+                                ) : null
+                            }
+                        </AuthUserContext.Consumer>
                     </Container>
                 </Hero.Body>
             </Hero>

@@ -17,7 +17,6 @@ store.dispatch(wsConnect('wss://ws-counter2.gigalixirapp.com'));
 
 ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>
-
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <App/>

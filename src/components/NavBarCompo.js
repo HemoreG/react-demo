@@ -1,28 +1,36 @@
-import React, {useState} from 'react';
-import {withTranslation} from 'react-i18next';
+import React, {Fragment, useState} from 'react';
+import {useTranslation, withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
 import {Navbar} from 'react-bulma-components';
 
 import reactIcon from "../logo.svg";
 import {Link} from "react-router-dom";
-import {changePath, toggleFollow, toggleHeader} from "../actions/appAction";
+import {changePath, changeTheme, toggleFollow, toggleHeader} from "../actions/appAction";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import SignOutButton from "./User/Signout";
 import {AuthUserContext} from './Session';
 import * as ROLES from '../assets/constants/roles';
 
 
-function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
+function NavBarCompo({changeTheme, toggleHeader, toggleFollow, changePath, state, t}) {
     // props contains dispatchers (you need to load them at the bottom of the file)
     const [open, setOpen] = useState(false);
     const [openCounters, setOpenCounters] = useState(true);
     const [openTheme, setOpenTheme] = useState(true);
     const [openOperation, setOpenOperation] = useState(true);
     const [openUsers, setOpenUsers] = useState(true);
+    const {i18n} = useTranslation();
 
     const navigateAndCloseMenu = (path) => {
         setOpen(false);
         changePath(path)
+    };
+
+    const changeLanguage = () => {
+        const nextLanguage = localStorage.i18nextLng === 'en' ? 'fr' : 'en';
+        i18n.changeLanguage(nextLanguage).catch(error => {
+            console.log(error);
+        })
     };
 
     return (
@@ -39,12 +47,9 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
                         src={reactIcon}
                         alt="Logo React"/>
                 </Navbar.Item>
-                <Navbar.Item onClick={() => toggleFollow()}>
-                    {t(state.isFollowing ? 'dontFollowTheDemo' : 'followTheDemo')}
-                </Navbar.Item>
                 <Navbar.Item renderAs="div">
                     <span className="icon">
-                        <FontAwesomeIcon icon="user"/>
+                        <FontAwesomeIcon icon="network-wired"/>
                     </span>
                     <span>{state.visitors}</span>
                 </Navbar.Item>
@@ -98,44 +103,55 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
                             </Navbar.Item>
                         </Navbar.Dropdown>
                     </Navbar.Item>
-                    <Navbar.Item renderAs={Link} to="/about"
-                                 onClick={() => navigateAndCloseMenu("about")}>
-                        {t('aboutTitle')}
-                    </Navbar.Item>
                 </Navbar.Container>
                 <Navbar.Container position="end">
-                    <AuthUserContext.Consumer>
-                        {
-                            authUser => authUser ?
-                                (
-                                    <Navbar.Item dropdown hoverable>
-                                        <Navbar.Link arrowless={true} onClick={() => setOpenUsers(!openUsers)}>
-                                            <FontAwesomeIcon icon="user"/>
-                                        </Navbar.Link>
-                                        <Navbar.Dropdown hidden={!openUsers}>
-                                            {
-                                                authUser.roles === ROLES.ADMIN && (
-                                                    <Navbar.Item renderAs={Link} to="/administration">
-                                                        {t('administration')}
-                                                    </Navbar.Item>
-                                                )
-                                            }
-                                            <Navbar.Item renderAs={Link} to="/account">
-                                                {t('account')}
+                    <Navbar.Item dropdown hoverable>
+                        <Navbar.Link arrowless={true} onClick={() => setOpenUsers(!openUsers)}>
+                            <FontAwesomeIcon icon="user"/>
+                        </Navbar.Link>
+                        <Navbar.Dropdown hidden={!openUsers}>
+                            <AuthUserContext.Consumer>
+                                {
+                                    authUser => authUser ?
+                                        (
+                                            <Fragment>
+                                                <Navbar.Item onClick={() => toggleFollow()}>
+                                                    {t(state.isFollowing ? 'dontFollowTheDemo' : 'followTheDemo')}
+                                                </Navbar.Item>
+                                                {
+                                                    authUser.roles === ROLES.ADMIN && (
+                                                        <Navbar.Item renderAs={Link} to="/administration">
+                                                            {t('administration')}
+                                                        </Navbar.Item>
+                                                    )
+                                                }
+                                                <Navbar.Item renderAs={Link} to="/account">
+                                                    {t('account')}
+                                                </Navbar.Item>
+                                                <SignOutButton/>
+                                            </Fragment>
+                                        ) :
+                                        (
+                                            <Navbar.Item renderAs={Link} to="/login">
+                                                {t('login')}
                                             </Navbar.Item>
-                                            <SignOutButton/>
-                                        </Navbar.Dropdown>
-                                    </Navbar.Item>
-                                ) :
-                                (
-                                    <Navbar.Item renderAs={Link} to="/login">
-                                        {t('login')}
-                                    </Navbar.Item>
-                                )
-                        }
-                    </AuthUserContext.Consumer>
+                                        )
+                                }
+                            </AuthUserContext.Consumer>
+                            <Navbar.Item onClick={() => changeTheme()}>
+                                {t('changeTheme')}
+                            </Navbar.Item>
+                            <Navbar.Item renderAs={Link} to="/about"
+                                         onClick={() => navigateAndCloseMenu("about")}>
+                                {t('aboutTitle')}
+                            </Navbar.Item>
+                        </Navbar.Dropdown>
+                    </Navbar.Item>
                     <Navbar.Item onClick={() => toggleHeader()}>
                         {t(state.showHeader ? 'closeHeader' : 'openHeader')}
+                    </Navbar.Item>
+                    <Navbar.Item onClick={() => changeLanguage()}>
+                        {t('changeLanguage')}
                     </Navbar.Item>
                 </Navbar.Container>
             </Navbar.Menu>
@@ -146,7 +162,8 @@ function NavBarCompo({toggleHeader, toggleFollow, changePath, state, t}) {
 const mapDispatchToProps = dispatch => ({
     changePath: (path) => dispatch(changePath(path)),
     toggleHeader: () => dispatch(toggleHeader()),
-    toggleFollow: () => dispatch(toggleFollow())
+    toggleFollow: () => dispatch(toggleFollow()),
+    changeTheme: () => dispatch(changeTheme())
 });
 
 const mapStateToProps = (state) => ({

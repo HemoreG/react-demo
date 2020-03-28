@@ -74,7 +74,7 @@ class SignUpFormBase extends Component {
                             value={username}
                             onChange={this.onChange}
                             type="text"
-                            placeholder="Full Name"
+                            placeholder={t('username')}
                         />
                         <span className="icon is-small is-left">
                           <FontAwesomeIcon icon="user"/>
@@ -104,7 +104,7 @@ class SignUpFormBase extends Component {
                             className="input"
                             onChange={this.onChange}
                             type="password"
-                            placeholder="Password"
+                            placeholder={t('password')}
                         />
                         <span className="icon is-small is-left">
                       <FontAwesomeIcon icon="lock"/>
@@ -119,7 +119,7 @@ class SignUpFormBase extends Component {
                             className="input"
                             onChange={this.onChange}
                             type="password"
-                            placeholder="Confirm Password"
+                            placeholder={t('confirmPassword')}
                         />
                         <span className="icon is-small is-left">
                       <FontAwesomeIcon icon="lock"/>

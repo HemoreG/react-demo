@@ -9,6 +9,7 @@ import {
     faLink,
     faLock,
     faMinus,
+    faNetworkWired,
     faPaperPlane,
     faPlus,
     faQrcode,
@@ -17,4 +18,4 @@ import {
     faUserShield
 } from '@fortawesome/free-solid-svg-icons';
 
-export default [faChevronLeft, faHome, faChevronRight, faLightbulb, faUserShield, faQrcode, faPlus, faMinus, faPaperPlane, faUser, faLink, faCookieBite, faTrash, faEnvelope, faCheck, faLock]
+export default [faChevronLeft, faHome, faChevronRight, faLightbulb, faUserShield, faQrcode, faPlus, faMinus, faPaperPlane, faUser, faLink, faCookieBite, faTrash, faEnvelope, faCheck, faLock, faNetworkWired]
