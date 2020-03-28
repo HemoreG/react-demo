@@ -19,6 +19,7 @@ function NavBarCompo({changeTheme, toggleHeader, toggleFollow, changePath, state
     const [openTheme, setOpenTheme] = useState(true);
     const [openOperation, setOpenOperation] = useState(true);
     const [openUsers, setOpenUsers] = useState(true);
+    const [openTools, setOpenTools] = useState(true);
     const {i18n} = useTranslation();
 
     const navigateAndCloseMenu = (path) => {
@@ -138,6 +139,16 @@ function NavBarCompo({changeTheme, toggleHeader, toggleFollow, changePath, state
                                         )
                                 }
                             </AuthUserContext.Consumer>
+                        </Navbar.Dropdown>
+                    </Navbar.Item>
+                    <Navbar.Item dropdown hoverable>
+                        <Navbar.Link arrowless={true} onClick={() => setOpenTools(!openTools)}>
+                            <FontAwesomeIcon icon="tools"/>
+                        </Navbar.Link>
+                        <Navbar.Dropdown hidden={!openTools}>
+                            <Navbar.Item onClick={() => toggleHeader()}>
+                                {t(state.showHeader ? 'closeHeader' : 'openHeader')}
+                            </Navbar.Item>
                             <Navbar.Item onClick={() => changeTheme()}>
                                 {t('changeTheme')}
                             </Navbar.Item>
@@ -146,9 +157,6 @@ function NavBarCompo({changeTheme, toggleHeader, toggleFollow, changePath, state
                                 {t('aboutTitle')}
                             </Navbar.Item>
                         </Navbar.Dropdown>
-                    </Navbar.Item>
-                    <Navbar.Item onClick={() => toggleHeader()}>
-                        {t(state.showHeader ? 'closeHeader' : 'openHeader')}
                     </Navbar.Item>
                     <Navbar.Item onClick={() => changeLanguage()}>
                         {t('changeLanguage')}
