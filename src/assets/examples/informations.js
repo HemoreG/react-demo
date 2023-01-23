@@ -24,7 +24,7 @@ const edouard = {
 const jerome = {
   name: 'Jey Puget Gil',
   description:
-    "Étudiant en informatique à l’UCBL, j'aime travailler sur des projets d’Art, d'Accessibilité ou de Géomatique.",
+    "Étudiant·e en informatique à l’UCBL, j'aime travailler sur des projets d’Art, d'Accessibilité ou de Géomatique.",
   link: 'https://github.com/LinkJerome',
   at: '@LinkJerome',
   img: jeg
