@@ -25,16 +25,16 @@ const jerome = {
   name: 'Jey Puget Gil',
   description:
     "Étudiant·e en informatique à l’UCBL, j'aime travailler sur des projets d’Art, d'Accessibilité ou de Géomatique.",
-  link: 'https://github.com/LinkJerome',
-  at: '@LinkJerome',
+  link: 'https://github.com/HemoreG',
+  at: '@HemoreG',
   img: jeg
 }
 
 const reactRepo = {
   name: 'Repository React',
   description: "Demo d'utilisation de la librairie React.js.",
-  link: 'https://github.com/LinkJerome/react-demo',
-  at: '@LinkJerome/react-demo',
+  link: 'https://github.com/HemoreG/react-demo',
+  at: '@HemoreG/react-demo',
   img: reactIcon
 }
 
